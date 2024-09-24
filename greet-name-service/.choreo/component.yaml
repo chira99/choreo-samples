@@ -1,0 +1,52 @@
+# +required The configuration file schema version
+schemaVersion: 1.1
+
+# +optional Incoming connection details for the component
+endpoints:
+  # +required Unique name for the endpoint.
+  # This name will be used when generating the managed API
+  - name: greeter-name-service
+    # +optional Display name for the endpoint.
+    displayName: Greeter Name Service
+    # +required Service section has the user service endpoint details
+    service:
+      # +optional Base path of the API that gets exposed via the endpoint.
+      # This is mandatory if the endpoint type is set to REST or GraphQL.
+      basePath: /
+      # +required Numeric port value that gets exposed via the endpoint
+      port: 9097
+    # +required Type of traffic that the endpoint is accepting.
+    # Allowed values: REST, GraphQL, GRPC, TCP, UDP.
+    type: REST
+    # +optional Network level visibilities of the endpoint.
+    # Takes priority over networkVisibility if defined. 
+    # Accepted values: Project|Organization|Public(Default).
+    networkVisibilities: 
+      - Public
+      - Project
+    # +optional The path to the schema definition file.
+    # Defaults to wildcard route if not specified.
+    # This is only applicable to REST endpoint types.
+    # The path should be relative to the docker context.
+    schemaFilePath: openapi.yaml
+
+# +optional Outgoing connection details for the component
+dependencies:
+  # +optional Defines the service references from the Internal Marketplace
+  serviceReferences:
+    # +required Name of the service reference
+    - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
+      # +required Name of the connection instance
+      connectionConfig: 01ef7a3c-f0e5-1e78-a221-b6935eb61a7c
+      # +optional Environment variables injected to the component for connection configuration
+      env:
+        # +required Key name of the connection configuration
+        - from: ServiceURL
+          # +required Environment variable injected to the container
+          to: SERVICE_URL
+        - from: ConsumerKey
+          to: CONSUMER_KEY
+        - from: ConsumerSecret
+          to: CONSUMER_SECRET
+        - from: TokenURL
+          to: TOKEN_URL
