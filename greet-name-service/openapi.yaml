@@ -12,14 +12,7 @@ paths:
   /greeter/greet:
     get:
       summary: Get greeting message
-      description: Returns a greeting message based on the provided name.
-      parameters:
-        - name: name
-          in: query
-          required: true
-          description: Name to greet
-          schema:
-            type: string
+      description: Returns a greeting message with name set as name.
       responses:
         '200':
           description: Successfully returns a greeting message.
