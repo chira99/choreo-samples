@@ -50,3 +50,10 @@ dependencies:
           to: CONSUMER_SECRET
         - from: TokenURL
           to: TOKEN_URL
+
+  connectionReferences:
+    # For internal service references:
+    # [/projectHandle/]componentHandle/majorVersion[/endpointHandle]
+    - name: connect-testService
+      resourceRef: service:/test1/testservice/v1/803f0/PUBLIC
+    
