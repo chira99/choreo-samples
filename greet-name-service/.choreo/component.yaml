@@ -1,5 +1,5 @@
 # +required The configuration file schema version
-schemaVersion: 1.1
+schemaVersion: 1.0
 
 # +optional Incoming connection details for the component
 endpoints:
@@ -51,9 +51,9 @@ dependencies:
         - from: TokenURL
           to: TOKEN_URL
 
-  connectionReferences:
-    # For internal service references:
-    # [/projectHandle/]componentHandle/majorVersion[/endpointHandle]
-    - name: connect-testService
-      resourceRef: service:/test1/testservice/v1/803f0/PUBLIC
+  # connectionReferences:
+  #   # For internal service references:
+  #   # [/projectHandle/]componentHandle/majorVersion[/endpointHandle]
+  #   - name: connect-testService
+  #     resourceRef: service:/test1/testservice/v1/803f0/PUBLIC
     
