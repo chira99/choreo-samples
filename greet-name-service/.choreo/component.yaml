@@ -35,9 +35,9 @@ dependencies:
   # +optional Defines the service references from the Internal Marketplace
   serviceReferences:
     # +required Name of the service reference
-    - name: choreo:///apifirst/testprojecthansi/test-chira/803f0/v1/PUBLIC
+    - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
       # +required Name of the connection instance
-      connectionConfig: 01ef7f09-34db-15f8-bee3-f296ae52e14e
+      connectionConfig: 01ef861c-7e6c-12e8-a336-e35654681c7a
       # +optional Environment variables injected to the component for connection configuration
       env:
         # +required Key name of the connection configuration
@@ -56,4 +56,4 @@ dependencies:
   #   # [/projectHandle/]componentHandle/majorVersion[/endpointHandle]
   #   - name: connect-testService
   #     resourceRef: service:/test1/testservice/v1/803f0/PUBLIC
-    
+  
