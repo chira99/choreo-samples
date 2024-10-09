@@ -37,7 +37,7 @@ dependencies:
     # +required Name of the service reference
     - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
       # +required Name of the connection instance
-      connectionConfig: 01ef861c-7e6c-12e8-a336-e35654681c7a
+      connectionConfig: 01ef8623-343a-17b8-97f3-7c27653177af
       # +optional Environment variables injected to the component for connection configuration
       env:
         # +required Key name of the connection configuration
@@ -50,10 +50,8 @@ dependencies:
           to: CONSUMER_SECRET
         - from: TokenURL
           to: TOKEN_URL
-
   # connectionReferences:
   #   # For internal service references:
   #   # [/projectHandle/]componentHandle/majorVersion[/endpointHandle]
   #   - name: connect-testService
   #     resourceRef: service:/test1/testservice/v1/803f0/PUBLIC
-  
