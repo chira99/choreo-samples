@@ -32,26 +32,23 @@ endpoints:
 
 # +optional Outgoing connection details for the component
 dependencies:
-  # +optional Defines the service references from the Internal Marketplace
-  # serviceReferences:
-  #   # +required Name of the service reference
-  #   - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
-  #     # +required Name of the connection instance
-  #     connectionConfig: 01ef8623-343a-17b8-97f3-7c27653177af
-  #     # +optional Environment variables injected to the component for connection configuration
-  #     env:
-  #       # +required Key name of the connection configuration
-  #       - from: ServiceURL
-  #         # +required Environment variable injected to the container
-  #         to: SERVICE_URL
-  #       - from: ConsumerKey
-  #         to: CONSUMER_KEY
-  #       - from: ConsumerSecret
-  #         to: CONSUMER_SECRET
-  #       - from: TokenURL
-  #         to: TOKEN_URL
-  connectionReferences:
-    # For internal service references:
-    # [/projectHandle/]componentHandle/majorVersion[/endpointHandle]
-    - name: Av2toT
-      resourceRef: SERVICE:/test1/testservice/v1/803f0/PUBLIC
+    serviceReferences:
+    - name: choreo:///apifirst/testprojecthansi/testtimeout/40cc6/v1/PUBLIC
+      connectionConfig: 01ef8657-8433-1358-ba75-18a1b6a2386f
+      env:
+      # +optional Environment variables injected to the component for connection configuration
+        # +required Key name of the connection configuration
+        - from: ServiceURL
+          # +required Environment variable injected to the container
+          to: SERVICE_URL
+        - from: ConsumerKey
+          to: CONSUMER_KEY
+        - from: ConsumerSecret
+          to: CONSUMER_SECRET
+        - from: TokenURL
+          to: TOKEN_URL
+  # connectionReferences:
+  #   # For internal service references:
+  #   # [/projectHandle/]componentHandle/majorVersion[/endpointHandle]
+  #   - name: Av2toT
+  #     resourceRef: service:/test1/testservice/v1/803f0/PUBLIC
