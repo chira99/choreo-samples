@@ -54,4 +54,4 @@ dependencies:
     # For internal service references:
     # [/projectHandle/]componentHandle/majorVersion[/endpointHandle]
     - name: Av2toT
-      resourceRef: service:/test1/testservice/v1/803f0/PUBLIC
+      resourceRef: SERVICE:/test1/testservice/v1/803f0/PUBLIC
