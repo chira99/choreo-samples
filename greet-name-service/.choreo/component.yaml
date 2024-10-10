@@ -33,8 +33,8 @@ endpoints:
 # +optional Outgoing connection details for the component
 dependencies:
     serviceReferences:
-    - name: choreo:///apifirst/testprojecthansi/testtimeout/40cc6/v1/PUBLIC
-      connectionConfig: 01ef8657-8433-1358-ba75-18a1b6a2386f
+    - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
+      connectionConfig: 01ef8706-961f-1e18-a428-198d28cd233d
       env:
       # +optional Environment variables injected to the component for connection configuration
         # +required Key name of the connection configuration
