@@ -1,5 +1,5 @@
 # +required The configuration file schema version
-schemaVersion: 1.0
+schemaVersion: 1.1
 
 # +optional Incoming connection details for the component
 endpoints:
@@ -32,23 +32,21 @@ endpoints:
 
 # +optional Outgoing connection details for the component
 dependencies:
-    serviceReferences:
-    - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
-      connectionConfig: 01ef8706-961f-1e18-a428-198d28cd233d
-      env:
-      # +optional Environment variables injected to the component for connection configuration
-        # +required Key name of the connection configuration
-        - from: ServiceURL
-          # +required Environment variable injected to the container
-          to: SERVICE_URL
-        - from: ConsumerKey
-          to: CONSUMER_KEY
-        - from: ConsumerSecret
-          to: CONSUMER_SECRET
-        - from: TokenURL
-          to: TOKEN_URL
-  # connectionReferences:
-  #   # For internal service references:
-  #   # [/projectHandle/]componentHandle/majorVersion[/endpointHandle]
-  #   - name: Av2toT
-  #     resourceRef: service:/test1/testservice/v1/803f0/PUBLIC
+    # serviceReferences:
+    # - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
+    #   connectionConfig: 01ef8706-961f-1e18-a428-198d28cd233d
+    #   env:
+    #   # +optional Environment variables injected to the component for connection configuration
+    #     # +required Key name of the connection configuration
+    #     - from: ServiceURL
+    #       # +required Environment variable injected to the container
+    #       to: SERVICE_URL
+    #     - from: ConsumerKey
+    #       to: CONSUMER_KEY
+    #     - from: ConsumerSecret
+    #       to: CONSUMER_SECRET
+    #     - from: TokenURL
+    #       to: TOKEN_URL
+  connectionReferences:
+    - name: connect-Myservice-to-testService
+      resourceRef: service:/test1/testservice/v1/803f0/PUBLIC
