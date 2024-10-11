@@ -49,4 +49,4 @@ dependencies:
     #       to: TOKEN_URL
   connectionReferences:
     - name: connect-Myservice-to-testService
-      resourceRef: service:/test1/testservice/v1/803f0/PUBLIC
+      resourceRef: SERVICE:/test1/testservice/v1/803f0/PUBLIC
