@@ -16,7 +16,7 @@ spec:
       networkVisibility: Public
       # +optional Context (base path) of the API that gets exposed via the endpoint.
       # This is mandatory if the endpoint type is set to REST, GraphQL or WS.
-      context: /greeting
+      context: /
       # +optional The path to the schema definition file. Defaults to wildcard route if not specified.
       # This is only applicable to REST and WS endpoint types.
       # The path should be relative to the Docker context.
