@@ -53,10 +53,10 @@ func main() {
 func greetHandler(w http.ResponseWriter, r *http.Request) {
 
 	// OAuth2 Client credentials
-	serviceURL := os.Getenv("CHOREO_MYSERVICE_SERVICE_URL")
-	clientID := os.Getenv("CHOREO_MYSERVICE_CONSUMER_KEY")
-	clientSecret := os.Getenv("CHOREO_MYSERVICE_CONSUMER_SECRET")
-	tokenURL := os.Getenv("CHOREO_MYSERVICE_TOKEN_URL")
+	serviceURL := os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_SERVICEURL")
+	clientID := os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERKEY")
+	clientSecret := os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET")
+	tokenURL := os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL")
 
 	if serviceURL == "" || clientID == "" || clientSecret == "" || tokenURL == "" {
 		http.Error(w, "Missing required environment variables", http.StatusInternalServerError)
