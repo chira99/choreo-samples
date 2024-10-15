@@ -47,6 +47,6 @@ dependencies:
           to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET
         - from: TokenURL
           to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL
-  # connectionReferences:
-  #   - name: connect-Myservice-to-testService
-  #     resourceRef: service:/test1/testservice/v1/803f0/PUBLIC
+    connectionReferences:
+    - name: connect-Myservice-to-testService2
+      resourceRef: service:/test1/testservice2/v1/803f0/PUBLIC
