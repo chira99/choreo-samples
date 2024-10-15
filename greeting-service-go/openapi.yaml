@@ -25,3 +25,15 @@ paths:
                 type: string
       deprecated: false
       security: []
+  /greeter/world:
+    get:
+      summary: Greet the world
+      description: Returns a simple greeting message "Hello world".
+      responses:
+        '200':
+          description: Successful greeting message
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Hello world"
