@@ -34,6 +34,7 @@ func main() {
 
 	serverMux := http.NewServeMux()
 	serverMux.HandleFunc("/greeter/greet", greet)
+	serverMux.HandleFunc("/greeter/world", world) // New handler for /greeter/world
 
 	serverPort := 9090
 	server := http.Server{
@@ -68,4 +69,8 @@ func greet(w http.ResponseWriter, r *http.Request) {
 		name = "Stranger"
 	}
 	fmt.Fprintf(w, "Hello, %s!\n", name)
+}
+
+func world(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello world")
 }
