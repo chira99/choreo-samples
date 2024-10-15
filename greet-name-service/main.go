@@ -76,11 +76,13 @@ func makeOAuth2Request(w http.ResponseWriter, r *http.Request, serviceType strin
 		clientID = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERKEY")
 		clientSecret = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET")
 		tokenURL = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL")
+
 	case "SERVICE2":
 		serviceURL = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_SERVICEURL")
 		clientID = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_CONSUMERKEY")
 		clientSecret = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_CONSUMERSECRET")
 		tokenURL = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_TOKENURL")
+
 	default:
 		http.Error(w, "Invalid service type", http.StatusInternalServerError)
 		return
@@ -100,9 +102,18 @@ func makeOAuth2Request(w http.ResponseWriter, r *http.Request, serviceType strin
 
 	// Create an HTTP client with OAuth2 token
 	client := oauth2Config.Client(context.Background())
+	// Construct the service URL based on service type
+
+	var serviceRequestURL string
+	if serviceType == "SERVICE1" {
+		serviceRequestURL = fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "name")
+	} else {
+		// For SERVICE2, just use the base URL and path
+		serviceRequestURL = fmt.Sprintf("%s/greeter/world", serviceURL)
+	}
 
 	// Make a request to the specified service API path
-	resp, err := client.Get(serviceURL)
+	resp, err := client.Get(serviceRequestURL)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Failed to make a request to service: %v", err), http.StatusInternalServerError)
 		return
