@@ -9,13 +9,6 @@ paths:
       description: Say hello to the whole world!
       tags:
         - greeting
-      parameters:
-        - name: name
-          in: query
-          description: Name of the person to greet
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: Successful response
