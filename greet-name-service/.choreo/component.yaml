@@ -34,7 +34,7 @@ endpoints:
 dependencies:
     serviceReferences:
     - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
-      connectionConfig: 01ef8706-961f-1e18-a428-198d28cd233d
+      connectionConfig: 01ef8b87-9d70-140e-98aa-7f7a0969ffc7
       env:
       # +optional Environment variables injected to the component for connection configuration
         # +required Key name of the connection configuration
@@ -48,8 +48,8 @@ dependencies:
         - from: TokenURL
           to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL
 
-    - name: choreo:///chips/test1/testservice2/9446d/v1/PUBLIC
-      connectionConfig: 01ef8b76-a3a9-1f16-a09f-d7ef192c4160
+    - name: choreo:///chips/test1/worldservice/4fd61/v1/PUBLIC
+      connectionConfig: 01ef8b89-d578-1836-9993-d8d36d8e11d4
       env:
       # +optional Environment variables injected to the component for connection configuration
         # +required Key name of the connection configuration
