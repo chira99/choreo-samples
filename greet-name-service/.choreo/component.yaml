@@ -47,6 +47,22 @@ dependencies:
           to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET
         - from: TokenURL
           to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL
-    connectionReferences:
-    - name: connect-Myservice-to-testService2
-      resourceRef: service:/test1/testservice2/v1/9446d/PUBLIC
+
+    - name: choreo:///chips/test1/testservice2/9446d/v1/PUBLIC
+      connectionConfig: 01ef8b76-a3a9-1f16-a09f-d7ef192c4160
+      env:
+      # +optional Environment variables injected to the component for connection configuration
+        # +required Key name of the connection configuration
+        - from: ServiceURL
+          # +required Environment variable injected to the container
+          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_SERVICEURL
+        - from: ConsumerKey
+          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_CONSUMERKEY
+        - from: ConsumerSecret
+          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_CONSUMERSECRET
+        - from: TokenURL
+          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_TOKENURL
+
+    # connectionReferences:
+    # - name: connect-Myservice-to-testService2
+    #   resourceRef: service:/test1/testservice2/v1/9446d/PUBLIC
