@@ -106,7 +106,7 @@ func makeOAuth2Request(w http.ResponseWriter, r *http.Request, serviceType strin
 
 	var serviceRequestURL string
 	if serviceType == "SERVICE1" {
-		serviceRequestURL = fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "name")
+		serviceRequestURL = fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "person")
 	} else {
 		// For SERVICE2, just use the base URL and path
 		serviceRequestURL = fmt.Sprintf("%s/greeter/world", serviceURL)

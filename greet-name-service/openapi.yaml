@@ -20,7 +20,7 @@ paths:
             application/json:
               schema:
                 type: string
-                example: "Hello, John!"
+                example: "Hello, person!"
         '500':
           description: Error occurred while processing the request
           content:
