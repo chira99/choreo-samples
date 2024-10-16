@@ -34,19 +34,19 @@ endpoints:
 dependencies:
     serviceReferences:
     - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
-      connectionConfig: 01ef8706-961f-1e18-a428-198d28cd233d
+      connectionConfig: 01ef8b81-8cbc-1cc0-9321-33c4076ab89d
       env:
       # +optional Environment variables injected to the component for connection configuration
         # +required Key name of the connection configuration
         - from: ServiceURL
           # +required Environment variable injected to the container
-          to: CHOREO_CONNECT_MYSERVICE1_TO_TESTSERVICE_SERVICEURL
+          to: CHOREO_CONNECTM1TOT1_SERVICEURL
         - from: ConsumerKey
-          to: CHOREO_CONNECT_MYSERVICE1_TO_TESTSERVICE_CONSUMERKEY
+          to: CHOREO_CONNECTM1TOT1_CONSUMERKEY
         - from: ConsumerSecret
-          to: CHOREO_CONNECT_MYSERVICE1_TO_TESTSERVICE_CONSUMERSECRET
+          to: CHOREO_CONNECTM1TOT1_CONSUMERSECRET
         - from: TokenURL
-          to: CHOREO_CONNECT_MYSERVICE1_TO_TESTSERVICE_TOKENURL
+          to: CHOREO_CONNECTM1TOT1_TOKENURL
 
 
     # connectionReferences:
