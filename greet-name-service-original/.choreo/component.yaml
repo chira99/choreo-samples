@@ -40,13 +40,13 @@ dependencies:
         # +required Key name of the connection configuration
         - from: ServiceURL
           # +required Environment variable injected to the container
-          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_SERVICEURL
+          to: CHOREO_CONNECT_MYSERVICE1_TO_TESTSERVICE_SERVICEURL
         - from: ConsumerKey
-          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERKEY
+          to: CHOREO_CONNECT_MYSERVICE1_TO_TESTSERVICE_CONSUMERKEY
         - from: ConsumerSecret
-          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET
+          to: CHOREO_CONNECT_MYSERVICE1_TO_TESTSERVICE_CONSUMERSECRET
         - from: TokenURL
-          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL
+          to: CHOREO_CONNECT_MYSERVICE1_TO_TESTSERVICE_TOKENURL
 
 
     # connectionReferences:
