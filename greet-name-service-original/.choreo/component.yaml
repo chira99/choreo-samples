@@ -1,0 +1,54 @@
+# +required The configuration file schema version
+schemaVersion: 1.1
+
+# +optional Incoming connection details for the component
+endpoints:
+  # +required Unique name for the endpoint.
+  # This name will be used when generating the managed API
+  - name: greeter-name-service
+    # +optional Display name for the endpoint.
+    displayName: Greeter Name Service
+    # +required Service section has the user service endpoint details
+    service:
+      # +optional Base path of the API that gets exposed via the endpoint.
+      # This is mandatory if the endpoint type is set to REST or GraphQL.
+      basePath: /
+      # +required Numeric port value that gets exposed via the endpoint
+      port: 8080
+    # +required Type of traffic that the endpoint is accepting.
+    # Allowed values: REST, GraphQL, GRPC, TCP, UDP.
+    type: REST
+    # +optional Network level visibilities of the endpoint.
+    # Takes priority over networkVisibility if defined. 
+    # Accepted values: Project|Organization|Public(Default).
+    networkVisibilities: 
+      - Public
+      - Project
+    # +optional The path to the schema definition file.
+    # Defaults to wildcard route if not specified.
+    # This is only applicable to REST endpoint types.
+    # The path should be relative to the docker context.
+    schemaFilePath: openapi.yaml
+
+# +optional Outgoing connection details for the component
+dependencies:
+    serviceReferences:
+    - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
+      connectionConfig: 01ef8706-961f-1e18-a428-198d28cd233d
+      env:
+      # +optional Environment variables injected to the component for connection configuration
+        # +required Key name of the connection configuration
+        - from: ServiceURL
+          # +required Environment variable injected to the container
+          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_SERVICEURL
+        - from: ConsumerKey
+          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERKEY
+        - from: ConsumerSecret
+          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET
+        - from: TokenURL
+          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL
+
+
+    # connectionReferences:
+    # - name: connect-Myservice-to-testService2
+    #   resourceRef: service:/test1/testservice2/v1/9446d/PUBLIC
