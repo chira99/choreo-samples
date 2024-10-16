@@ -33,9 +33,9 @@ import (
 func main() {
 
 	serverMux := http.NewServeMux()
-	serverMux.HandleFunc("/greeter/greet", greet)
+	serverMux.HandleFunc("/greeter/world", greet)
 
-	serverPort := 9090
+	serverPort := 9070
 	server := http.Server{
 		Addr:    fmt.Sprintf(":%d", serverPort),
 		Handler: serverMux,
@@ -63,9 +63,5 @@ func main() {
 }
 
 func greet(w http.ResponseWriter, r *http.Request) {
-	name := r.URL.Query().Get("name")
-	if name == "" {
-		name = "Stranger"
-	}
-	fmt.Fprintf(w, "Hello, %s!\n", name)
+	fmt.Fprintf(w, "Hello, world!\n")
 }
