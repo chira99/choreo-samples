@@ -65,5 +65,5 @@ dependencies:
     #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_TOKENURL
 
     connectionReferences:
-    - name: connectWorld
+    - name: project-level-conn
       resourceRef: service:/test1/worldservice/v1/4fd61/PUBLIC
