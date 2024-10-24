@@ -78,10 +78,11 @@ func makeOAuth2Request(w http.ResponseWriter, r *http.Request, serviceType strin
 		tokenURL = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL")
 
 	case "SERVICE2":
-		serviceURL = os.Getenv("CHOREO_CONNECTWORLD_SERVICEURL")
-		clientID = os.Getenv("CHOREO_CONNECTWORLD_CONSUMERKEY")
-		clientSecret = os.Getenv("CHOREO_CONNECTWORLD_CONSUMERSECRET")
-		tokenURL = os.Getenv("CHOREO_CONNECTWORLD_TOKENURL")
+		
+		serviceURL = os.Getenv("CHOREO_PROJECT_LEVEL_CONN_SERVICEURL")
+		clientID = os.Getenv("CHOREO_PROJECT_LEVEL_CONN_CONSUMERKEY")
+		clientSecret = os.Getenv("CHOREO_PROJECT_LEVEL_CONN_CONSUMERSECRET")
+		tokenURL = os.Getenv("CHOREO_PROJECT_LEVEL_CONN_TOKENURL")
 
 	default:
 		http.Error(w, "Invalid service type", http.StatusInternalServerError)
