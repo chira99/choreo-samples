@@ -53,15 +53,15 @@ dependencies:
       connectionConfig: 01ef92c2-b503-1a3e-a881-5f7df860b7be
       env: 
       - from: TestKey
-        to: <My_TestKey>
+        to: My_TestKey
       - from: test
-        to: <My_test>
+        to: My_test
       - from: kitty
-        to: <My_kitty>
+        to: My_kitty
       - from: kitty6
-        to: <My_kitty6>
+        to: My_kitty6
       - from: ServiceURL
-        to: <My_ServiceURL>
+        to: My_ServiceURL
 
 
     # - name: choreo:///chips/test1/worldservice/4fd61/v1/PUBLIC
