@@ -138,6 +138,6 @@ func makeOAuth2Request(w http.ResponseWriter, r *http.Request, serviceType strin
 	}
 
 	else {
-		w.Write("1:"+serviceURL+" 2:"+clientID+" 3:"+clientSecret+" 4:"+tokenURL+" 5:"+tokenURL+" 6:"extra)
+		w.Write("1:"+serviceURL+" 2:"+clientID+" 3:"+clientSecret+" 4:"+tokenURL+" 5:"+tokenURL+" 6:"+extra)
 	}
 }
