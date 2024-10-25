@@ -49,6 +49,21 @@ dependencies:
         - from: TokenURL
           to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL
 
+    - name: thirdparty:test3PS/v1
+      connectionConfig: 01ef92c2-b503-1a3e-a881-5f7df860b7be
+      env: 
+      - from: TestKey
+        to: <My_TestKey>
+      - from: test
+        to: <My_test>
+      - from: kitty
+        to: <My_kitty>
+      - from: kitty6
+        to: <My_kitty6>
+      - from: ServiceURL
+        to: <My_ServiceURL>
+
+
     # - name: choreo:///chips/test1/worldservice/4fd61/v1/PUBLIC
     #   connectionConfig: 01ef8b89-d578-1836-9993-d8d36d8e11d4
     #   env:
