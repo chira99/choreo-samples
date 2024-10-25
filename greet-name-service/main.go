@@ -76,68 +76,61 @@ func makeOAuth2Request(w http.ResponseWriter, r *http.Request, serviceType strin
 		clientID = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERKEY")
 		clientSecret = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET")
 		tokenURL = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL")
-
 	case "SERVICE2":
-		
-		serviceURL = os.Getenv("My_TestKey")
-		clientID = os.Getenv("My_test")
-		clientSecret = os.Getenv("My_kitty")
+		serviceURL = os.Getenv("My_ServiceURL")
+		clientID = os.Getenv("My_TestKey")
+		clientSecret = os.Getenv("My_test")
 		tokenURL = os.Getenv("My_kitty6")
-		extra = os.Getenv("My_ServiceURL")
-		
+
+		// For SERVICE2, only display the environment variables without sending a request
+		if serviceURL == "" || clientID == "" || clientSecret == "" || tokenURL == "" {
+			http.Error(w, "Missing required environment variables for SERVICE2", http.StatusInternalServerError)
+			return
+		}
+
+		// Display the environment variables as a simple response
+		w.Header().Set("Content-Type", "text/plain")
+		fmt.Fprintf(w, "SERVICE2 Environment Variables:\n1. serviceURL: %s\n2. clientID: %s\n3. clientSecret: %s\n4. tokenURL: %s", serviceURL, clientID, clientSecret, tokenURL)
+		return
 	default:
 		http.Error(w, "Invalid service type", http.StatusInternalServerError)
 		return
 	}
 
-	if serviceType == "SERVICE1" {
-
-		if serviceURL == "" || clientID == "" || clientSecret == "" || tokenURL == "" {
-			http.Error(w, "Missing required environment variables", http.StatusInternalServerError)
-			return
-		}
-	
-		// Set up OAuth2 configuration
-		oauth2Config := clientcredentials.Config{
-			ClientID:     clientID,
-			ClientSecret: clientSecret,
-			TokenURL:     tokenURL,
-		}
-	
-		// Create an HTTP client with OAuth2 token
-		client := oauth2Config.Client(context.Background())
-		// Construct the service URL based on service type
-	
-		var serviceRequestURL string
-		if serviceType == "SERVICE1" {
-			serviceRequestURL = fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "person")
-		} else {
-			// For SERVICE2, just use the base URL and path
-			serviceRequestURL = fmt.Sprintf("%s/greeter/world", serviceURL)
-		}
-	
-		// Make a request to the specified service API path
-		resp, err := client.Get(serviceRequestURL)
-		if err != nil {
-			http.Error(w, fmt.Sprintf("Failed to make a request to service: %v", err), http.StatusInternalServerError)
-			return
-		}
-		defer resp.Body.Close()
-	
-		// Read the response from the service
-		body, err := io.ReadAll(resp.Body)
-		if err != nil {
-			http.Error(w, "Failed to read the response body", http.StatusInternalServerError)
-			return
-		}
-	
-		// Write the response from the service to the HTTP response
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(resp.StatusCode)
-		w.Write(body)
+	// If SERVICE1, continue with OAuth2 authenticated request
+	if serviceURL == "" || clientID == "" || clientSecret == "" || tokenURL == "" {
+		http.Error(w, "Missing required environment variables", http.StatusInternalServerError)
+		return
 	}
 
-	else {
-		w.Write("1:"+serviceURL+" 2:"+clientID+" 3:"+clientSecret+" 4:"+tokenURL+" 5:"+tokenURL+" 6:"+extra)
+	// Set up OAuth2 configuration
+	oauth2Config := clientcredentials.Config{
+		ClientID:     clientID,
+		ClientSecret: clientSecret,
+		TokenURL:     tokenURL,
 	}
+
+	// Create an HTTP client with OAuth2 token
+	client := oauth2Config.Client(context.Background())
+	serviceRequestURL := fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "person")
+
+	// Make a request to the specified service API path
+	resp, err := client.Get(serviceRequestURL)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Failed to make a request to service: %v", err), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	// Read the response from the service
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		http.Error(w, "Failed to read the response body", http.StatusInternalServerError)
+		return
+	}
+
+	// Write the response from the service to the HTTP response
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(resp.StatusCode)
+	w.Write(body)
 }
