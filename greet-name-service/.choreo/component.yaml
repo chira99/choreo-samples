@@ -34,34 +34,31 @@ endpoints:
 # +optional Outgoing connection details for the component
 dependencies:
     serviceReferences:
-    - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
-      connectionConfig: 01ef8b87-9d70-140e-98aa-7f7a0969ffc7
-      env:
-      # +optional Environment variables injected to the component for connection configuration
-        # +required Key name of the connection configuration
-        - from: ServiceURL
-          # +required Environment variable injected to the container
-          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_SERVICEURL
-        - from: ConsumerKey
-          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERKEY
-        - from: ConsumerSecret
-          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET
-        - from: TokenURL
-          to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL
+    # - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
+    #   connectionConfig: 01ef8b87-9d70-140e-98aa-7f7a0969ffc7
+    #   env:
+    #   # +optional Environment variables injected to the component for connection configuration
+    #     # +required Key name of the connection configuration
+    #     - from: ServiceURL
+    #       # +required Environment variable injected to the container
+    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_SERVICEURL
+    #     - from: ConsumerKey
+    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERKEY
+    #     - from: ConsumerSecret
+    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET
+    #     - from: TokenURL
+    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL
 
-    - name: thirdparty:test3PS/v1
-      connectionConfig: 01ef92c2-b503-1a3e-a881-5f7df860b7be
-      env: 
+    - name: thirdparty:my3PS/v1
+      connectionConfig: 01ef95b3-d068-1fa0-aba4-c79dbc73bc63
+      env:
       - from: TestKey
-        to: My_TestKey
-      - from: test
-        to: My_test
-      - from: kitty
-        to: My_kitty
-      - from: kitty6
-        to: My_kitty6
+        to: TESTKEY
+      - from: SecretKey
+        to: SECRETKEY
       - from: ServiceURL
-        to: My_ServiceURL
+        to: SERVICEURL
+
 
 
     # - name: choreo:///chips/test1/worldservice/4fd61/v1/PUBLIC
@@ -79,6 +76,6 @@ dependencies:
     #     - from: TokenURL
     #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_TOKENURL
 
-    connectionReferences:
-    - name: project-level-conn
-      resourceRef: service:/test1/worldservice/v1/4fd61/PUBLIC
+    # connectionReferences:
+    # - name: project-level-conn
+    #   resourceRef: service:/test1/worldservice/v1/4fd61/PUBLIC
