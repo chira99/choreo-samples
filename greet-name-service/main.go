@@ -78,9 +78,9 @@ func makeOAuth2Request(w http.ResponseWriter, r *http.Request, serviceType strin
 		clientSecret = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET")
 		tokenURL = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL")
 	case "SERVICE2":
-		serviceURL = os.Getenv("SERVICEURL")
-		testKey = os.Getenv("TESTKEY")
-		secretKey = os.Getenv("SECRETKEY")
+		serviceURL = os.Getenv("CHOREO_CONNECTIONTOMY3PS_SERVICEURL")
+		testKey = os.Getenv("CHOREO_CONNECTIONTOMY3PS_TESTKEY")
+		secretKey = os.Getenv("CHOREO_CONNECTIONTOMY3PS_SECRETKEY")
 
 		// For SERVICE2, only display the environment variables without sending a request
 		if serviceURL == "" || testKey == "" || secretKey == "" {

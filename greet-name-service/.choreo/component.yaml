@@ -33,7 +33,7 @@ endpoints:
 
 # +optional Outgoing connection details for the component
 dependencies:
-    serviceReferences:
+    # serviceReferences:
     # - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
     #   connectionConfig: 01ef8b87-9d70-140e-98aa-7f7a0969ffc7
     #   env:
@@ -49,15 +49,19 @@ dependencies:
     #     - from: TokenURL
     #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL
 
-    - name: thirdparty:my3PS/v1
-      connectionConfig: 01ef95b3-d068-1fa0-aba4-c79dbc73bc63
-      env:
-      - from: TestKey
-        to: TESTKEY
-      - from: SecretKey
-        to: SECRETKEY
-      - from: ServiceURL
-        to: SERVICEURL
+    # - name: thirdparty:my3PS/v1
+    #   connectionConfig: 01ef95b3-d068-1fa0-aba4-c79dbc73bc63
+    #   env:
+    #   - from: TestKey
+    #     to: TESTKEY
+    #   - from: SecretKey
+    #     to: SECRETKEY
+    #   - from: ServiceURL
+    #     to: SERVICEURL
+
+    connectionReferences:
+    - name: connectionToMy3PS
+      resourceRef: thirdparty:my3PS/v1
 
 
 
