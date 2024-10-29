@@ -68,6 +68,7 @@ func worldHandler(w http.ResponseWriter, r *http.Request) {
 // Takes in a `serviceType` parameter to determine which environment variables to use
 func makeOAuth2Request(w http.ResponseWriter, r *http.Request, serviceType string) {
 	var serviceURL, clientID, clientSecret, tokenURL string
+	var testKey, secretKey string
 
 	// Choose environment variables based on the serviceType
 	switch serviceType {
