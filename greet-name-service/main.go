@@ -77,20 +77,19 @@ func makeOAuth2Request(w http.ResponseWriter, r *http.Request, serviceType strin
 		clientSecret = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET")
 		tokenURL = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL")
 	case "SERVICE2":
-		serviceURL = os.Getenv("My_ServiceURL")
-		clientID = os.Getenv("My_TestKey")
-		clientSecret = os.Getenv("My_test")
-		tokenURL = os.Getenv("My_kitty6")
+		serviceURL = os.Getenv("SERVICEURL")
+		testKey = os.Getenv("TESTKEY")
+		secretKey = os.Getenv("SECRETKEY")
 
 		// For SERVICE2, only display the environment variables without sending a request
-		if serviceURL == "" || clientID == "" || clientSecret == "" || tokenURL == "" {
-			http.Error(w, "Missing required environment variables for SERVICE2", http.StatusInternalServerError)
+		if serviceURL == "" || testKey == "" || secretKey == "" {
+			http.Error(w, "Missing required environment variables for 3PS", http.StatusInternalServerError)
 			return
 		}
 
 		// Display the environment variables as a simple response
 		w.Header().Set("Content-Type", "text/plain")
-		fmt.Fprintf(w, "SERVICE2 Environment Variables:\n1. serviceURL: %s\n2. clientID: %s\n3. clientSecret: %s\n4. tokenURL: %s", serviceURL, clientID, clientSecret, tokenURL)
+		fmt.Fprintf(w, "3PS Environment Variables:\n1. serviceURL: %s\n2. testKey: %s\n3. secretKey: %s\n", serviceURL, testKey, secretKey)
 		return
 	default:
 		http.Error(w, "Invalid service type", http.StatusInternalServerError)
