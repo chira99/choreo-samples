@@ -67,6 +67,18 @@ dependencies:
     #   resourceRef: thirdparty:my3PS/v1
 
 
+    serviceReferences:
+      - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/ORGANIZATION
+        connectionConfig: 01ef9741-1273-1768-b388-0189daaaa692
+        env:
+        - from: ServiceURL
+          to: SURL
+        - from: ConsumerKey
+          to: CKEY
+        - from: ConsumerSecret
+          to: CSECRET
+        - from: TokenURL
+          to: TURL 
 
     # - name: choreo:///chips/test1/worldservice/4fd61/v1/PUBLIC
     #   connectionConfig: 01ef8b89-d578-1836-9993-d8d36d8e11d4

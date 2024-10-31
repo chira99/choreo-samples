@@ -12,7 +12,7 @@ import (
 	"syscall"
 	"time"
 
-	// "golang.org/x/oauth2/clientcredentials"
+	"golang.org/x/oauth2/clientcredentials"
 )
 
 func main() {
@@ -23,7 +23,7 @@ func main() {
 	serverMux.HandleFunc("/greeter/greet", greetHandler)
 
 	// Register a new endpoint for the second service
-	serverMux.HandleFunc("/greeter/world", worldHandler)
+	serverMux.HandleFunc("/greeter/greetOrg", greetHandlerOrg)
 
 	serverPort := 8080
 	server := http.Server{
@@ -54,82 +54,94 @@ func main() {
 	log.Println("Server shutdown complete.")
 }
 
-// greetHandler handles the /greeter/greet API call
+// greetHandler handles the /greeter/greet API call for PROJECT
 func greetHandler(w http.ResponseWriter, r *http.Request) {
-	makeOAuth2Request(w, r, "SERVICE1")
+	makeProjectRequest(w, r)
 }
 
-// worldHandler handles the /another-service/action API call
-func worldHandler(w http.ResponseWriter, r *http.Request) {
-	makeOAuth2Request(w, r, "SERVICE2")
+// greetHandlerOrg handles the /greeter/greetOrg API call for ORG
+func greetHandlerOrg(w http.ResponseWriter, r *http.Request) {
+	makeOrgRequest(w, r)
 }
 
-// makeOAuth2Request makes an OAuth2 authenticated request to a service
-// Takes in a `serviceType` parameter to determine which environment variables to use
-func makeOAuth2Request(w http.ResponseWriter, r *http.Request, serviceType string) {
-	// var serviceURL, clientID, clientSecret, tokenURL string
-	var serviceURL string
-	var testKey, secretKey string
-
-	// Choose environment variables based on the serviceType
-	switch serviceType {
-	case "SERVICE1":
-		serviceURL = os.Getenv("CHOREO_CONNECT_TO_GREETER_PROJECTACCESS_SERVICEURL")
-		// clientID = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERKEY")
-		// clientSecret = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET")
-		// tokenURL = os.Getenv("CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL")
-	case "SERVICE2":
-		serviceURL = os.Getenv("CHOREO_CONNECTIONTOMY3PS_SERVICEURL")
-		testKey = os.Getenv("CHOREO_CONNECTIONTOMY3PS_TESTKEY")
-		secretKey = os.Getenv("CHOREO_CONNECTIONTOMY3PS_SECRETKEY")
-
-		// For SERVICE2, only display the environment variables without sending a request
-		if serviceURL == "" || testKey == "" || secretKey == "" {
-			http.Error(w, "Missing required environment variables for 3PS", http.StatusInternalServerError)
-			return
-		}
-
-		// Display the environment variables as a simple response
-		w.Header().Set("Content-Type", "text/plain")
-		fmt.Fprintf(w, "3PS Environment Variables:\n1. serviceURL: %s\n2. testKey: %s\n3. secretKey: %s\n", serviceURL, testKey, secretKey)
-		return
-	default:
-		http.Error(w, "Invalid service type", http.StatusInternalServerError)
-		return
-	}
-
-	// If SERVICE1, continue with OAuth2 authenticated request
-	// if serviceURL == "" || clientID == "" || clientSecret == "" || tokenURL == "" {
-	// 	http.Error(w, "Missing required environment variables", http.StatusInternalServerError)
-	// 	return
-	// }
+// makeProjectRequest makes a request to the PROJECT service without OAuth2 authentication
+func makeProjectRequest(w http.ResponseWriter, r *http.Request) {
+	serviceURL := os.Getenv("CHOREO_CONNECT_TO_GREETER_PROJECTACCESS_SERVICEURL")
 	if serviceURL == "" {
-		http.Error(w, "Missing required environment variables", http.StatusInternalServerError)
+		http.Error(w, "Missing required environment variable: CHOREO_CONNECT_TO_GREETER_PROJECTACCESS_SERVICEURL", http.StatusInternalServerError)
 		return
 	}
 
-	// // Set up OAuth2 configuration
-	// oauth2Config := clientcredentials.Config{
-	// 	ClientID:     clientID,
-	// 	ClientSecret: clientSecret,
-	// 	TokenURL:     tokenURL,
-	// }
-
-	// // Create an HTTP client with OAuth2 token
-	// client := oauth2Config.Client(context.Background())
-	serviceRequestURL := fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "person")
-
-	// Make a request to the specified service API path
+	serviceRequestURL := fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "person-project")
 	resp, err := http.Get(serviceRequestURL)
 	if err != nil {
+		log.Printf("Failed to make a request to PROJECT service: %v", err)
 		http.Error(w, fmt.Sprintf("Failed to make a request to service: %v", err), http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
 
-	// Read the response from the service
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
+		log.Println("Failed to read the response body for PROJECT service")
+		http.Error(w, "Failed to read the response body", http.StatusInternalServerError)
+		return
+	}
+
+	// Write the response from the service to the HTTP response
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(resp.StatusCode)
+	w.Write(body)
+}
+
+// makeOrgRequest makes an OAuth2 authenticated request to the ORG service
+func makeOrgRequest(w http.ResponseWriter, r *http.Request) {
+	serviceURL := os.Getenv("SURL")
+	clientID := os.Getenv("CKEY")
+	clientSecret := os.Getenv("CSECRET")
+	tokenURL := os.Getenv("TURL")
+
+	if serviceURL == "" || clientID == "" || clientSecret == "" || tokenURL == "" {
+		missingVars := []string{}
+		if serviceURL == "" {
+			missingVars = append(missingVars, "SURL")
+		}
+		if clientID == "" {
+			missingVars = append(missingVars, "CKEY")
+		}
+		if clientSecret == "" {
+			missingVars = append(missingVars, "CSECRET")
+		}
+		if tokenURL == "" {
+			missingVars = append(missingVars, "TURL")
+		}
+		http.Error(w, fmt.Sprintf("Missing required environment variables: %v", missingVars), http.StatusInternalServerError)
+		return
+	}
+
+	// Set up OAuth2 configuration
+	oauth2Config := clientcredentials.Config{
+		ClientID:     clientID,
+		ClientSecret: clientSecret,
+		TokenURL:     tokenURL,
+	}
+
+	// Create an HTTP client with OAuth2 token
+	client := oauth2Config.Client(context.Background())
+	serviceRequestURL := fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "person-org")
+
+	// Make a request to the specified service API path
+	resp, err := client.Get(serviceRequestURL)
+	if err != nil {
+		log.Printf("Failed to make a request to ORG service: %v", err)
+		http.Error(w, fmt.Sprintf("Failed to make a request to service: %v", err), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Println("Failed to read the response body for ORG service")
 		http.Error(w, "Failed to read the response body", http.StatusInternalServerError)
 		return
 	}
