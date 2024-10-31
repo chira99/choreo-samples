@@ -60,8 +60,11 @@ dependencies:
     #     to: SERVICEURL
 
     connectionReferences:
-    - name: connectionToMy3PS
-      resourceRef: thirdparty:my3PS/v1
+      - name: connect-to-greeter-projectAccess
+        resourceRef: service:/testcomponentyaml/greeter/v1/803f0/PROJECT
+
+    # - name: connectionToMy3PS
+    #   resourceRef: thirdparty:my3PS/v1
 
 
 
