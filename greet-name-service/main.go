@@ -25,7 +25,7 @@ func main() {
 	// Register a new endpoint for the second service
 	serverMux.HandleFunc("/greeter/greetOrg", greetHandlerOrg)
 	serverMux.HandleFunc("/greeter/greetDb", greetDb)
-	serverMux.HandleFunc("/greeter/greetDbProd", greetDbProd)
+	// serverMux.HandleFunc("/greeter/greetDbProd", greetDbProd)
 
 	serverPort := 8080
 	server := http.Server{
@@ -66,40 +66,40 @@ func greetHandlerOrg(w http.ResponseWriter, r *http.Request) {
 	makeOrgRequest(w, r)
 }
 
-func greetDbProd(w http.ResponseWriter, r *http.Request) {
-	hostName := os.Getenv("CHOREO_CONNECTDBPROD_HOSTNAME")
-	port := os.Getenv("CHOREO_CONNECTDBPROD_PORT")
-	username := os.Getenv("CHOREO_CONNECTDBPROD_USERNAME")
-	password := os.Getenv("CHOREO_CONNECTDBPROD_PASSWORD")
-	dbName := os.Getenv("CHOREO_CONNECTDBPROD_DATABASENAME")
+// func greetDbProd(w http.ResponseWriter, r *http.Request) {
+// 	hostName := os.Getenv("CHOREO_CONNECTDBPROD_HOSTNAME")
+// 	port := os.Getenv("CHOREO_CONNECTDBPROD_PORT")
+// 	username := os.Getenv("CHOREO_CONNECTDBPROD_USERNAME")
+// 	password := os.Getenv("CHOREO_CONNECTDBPROD_PASSWORD")
+// 	dbName := os.Getenv("CHOREO_CONNECTDBPROD_DATABASENAME")
 	
 	
 
-	if hostName == "" || port == "" || username == "" || password == "" || dbName == "" {
-		missingVars := []string{}
-		if hostName == "" {
-			missingVars = append(missingVars, "HNAME")
-		}
-		if port == "" {
-			missingVars = append(missingVars, "PORT");
-		}
-		if username == "" {
-			missingVars = append(missingVars, "UNAME");
-		}
-		if password == "" {
-			missingVars = append(missingVars, "PWD");
-		}
-		if dbName == "" {
-			missingVars = append(missingVars, "DBNAME");
-		}
-		http.Error(w, fmt.Sprintf("Missing required environment variables: %v", missingVars), http.StatusInternalServerError)
-		return
-	}
+// 	if hostName == "" || port == "" || username == "" || password == "" || dbName == "" {
+// 		missingVars := []string{}
+// 		if hostName == "" {
+// 			missingVars = append(missingVars, "HNAME")
+// 		}
+// 		if port == "" {
+// 			missingVars = append(missingVars, "PORT");
+// 		}
+// 		if username == "" {
+// 			missingVars = append(missingVars, "UNAME");
+// 		}
+// 		if password == "" {
+// 			missingVars = append(missingVars, "PWD");
+// 		}
+// 		if dbName == "" {
+// 			missingVars = append(missingVars, "DBNAME");
+// 		}
+// 		http.Error(w, fmt.Sprintf("Missing required environment variables: %v", missingVars), http.StatusInternalServerError)
+// 		return
+// 	}
 
-	// Display the environment variables as a simple response
-	w.Header().Set("Content-Type", "text/plain")
-	fmt.Fprintf(w, "DB Environment Variables:\n1. Hostname: %s\n2. Port: %s\n3. Username: %s\n4. Password: %s\n5. Database Name: %s\n", hostName, port, username, password, dbName)
-}
+// 	// Display the environment variables as a simple response
+// 	w.Header().Set("Content-Type", "text/plain")
+// 	fmt.Fprintf(w, "DB Environment Variables:\n1. Hostname: %s\n2. Port: %s\n3. Username: %s\n4. Password: %s\n5. Database Name: %s\n", hostName, port, username, password, dbName)
+// }
 
 func greetDb(w http.ResponseWriter, r *http.Request) {
 	makeDbReq(w, r)

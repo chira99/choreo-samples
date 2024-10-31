@@ -103,8 +103,8 @@ dependencies:
       - name: connectDbDev
         resourceRef: database:appointmentsdb/devdb
 
-      - name: connectDbProd
-        resourceRef: database:appointmentsdb/prodDb
+      # - name: connectDbProd
+      #   resourceRef: database:appointmentsdb/prodDb
     
     
 
