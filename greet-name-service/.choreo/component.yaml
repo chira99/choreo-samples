@@ -102,6 +102,10 @@ dependencies:
     connectionReferences:
       - name: connectDbDev
         resourceRef: database:appointmentsdb/devdb
+
+      - name: connectDbProd
+        resourceRef: database:appointmentsdb/prodDb
+    
     
 
     # - name: choreo:///chips/test1/worldservice/4fd61/v1/PUBLIC

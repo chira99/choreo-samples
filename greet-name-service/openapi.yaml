@@ -27,8 +27,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-                
+
   /greeter/greetDb:
+    get:
+      summary: Check DB connection
+      description: hehe
+      responses:
+        '200':
+          description: Successfully returns env variables
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Hello, person!"
+        '500':
+          description: Error occurred while processing the request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /greeter/greetDbProd:
     get:
       summary: Check DB connection
       description: hehe

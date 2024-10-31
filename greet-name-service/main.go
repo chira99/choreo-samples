@@ -25,6 +25,7 @@ func main() {
 	// Register a new endpoint for the second service
 	serverMux.HandleFunc("/greeter/greetOrg", greetHandlerOrg)
 	serverMux.HandleFunc("/greeter/greetDb", greetDb)
+	serverMux.HandleFunc("/greeter/greetDbProd", greetDbProd)
 
 	serverPort := 8080
 	server := http.Server{
@@ -64,9 +65,46 @@ func greetHandler(w http.ResponseWriter, r *http.Request) {
 func greetHandlerOrg(w http.ResponseWriter, r *http.Request) {
 	makeOrgRequest(w, r)
 }
+
+func greetDbProd(w http.ResponseWriter, r *http.Request) {
+	hostName := os.Getenv("CHOREO_CONNECTDBPROD_HOSTNAME")
+	port := os.Getenv("CHOREO_CONNECTDBPROD_PORT")
+	username := os.Getenv("CHOREO_CONNECTDBPROD_USERNAME")
+	password := os.Getenv("CHOREO_CONNECTDBPROD_PASSWORD")
+	dbName := os.Getenv("CHOREO_CONNECTDBPROD_DATABASENAME")
+	
+	
+
+	if hostName == "" || port == "" || username == "" || password == "" || dbName == "" {
+		missingVars := []string{}
+		if hostName == "" {
+			missingVars = append(missingVars, "HNAME")
+		}
+		if port == "" {
+			missingVars = append(missingVars, "PORT");
+		}
+		if username == "" {
+			missingVars = append(missingVars, "UNAME");
+		}
+		if password == "" {
+			missingVars = append(missingVars, "PWD");
+		}
+		if dbName == "" {
+			missingVars = append(missingVars, "DBNAME");
+		}
+		http.Error(w, fmt.Sprintf("Missing required environment variables: %v", missingVars), http.StatusInternalServerError)
+		return
+	}
+
+	// Display the environment variables as a simple response
+	w.Header().Set("Content-Type", "text/plain")
+	fmt.Fprintf(w, "DB Environment Variables:\n1. Hostname: %s\n2. Port: %s\n3. Username: %s\n4. Password: %s\n5. Database Name: %s\n", hostName, port, username, password, dbName)
+}
+
 func greetDb(w http.ResponseWriter, r *http.Request) {
 	makeDbReq(w, r)
 }
+
 
 // makeProjectRequest makes a request to the PROJECT service without OAuth2 authentication
 func makeProjectRequest(w http.ResponseWriter, r *http.Request) {
@@ -130,7 +168,7 @@ func makeDbReq(w http.ResponseWriter, r *http.Request) {
 
 	// Display the environment variables as a simple response
 	w.Header().Set("Content-Type", "text/plain")
-	fmt.Fprintf(w, "3PS Environment Variables:\n1. Hostname: %s\n2. Port: %s\n3. Username: %s\n4. Password: %s\n5. Database Name: %s\n", hostName, port, username, password, dbName)
+	fmt.Fprintf(w, "DB dev Environment Variables:\n1. Hostname: %s\n2. Port: %s\n3. Username: %s\n4. Password: %s\n5. Database Name: %s\n", hostName, port, username, password, dbName)
 }
 
 // makeOrgRequest makes an OAuth2 authenticated request to the ORG service
