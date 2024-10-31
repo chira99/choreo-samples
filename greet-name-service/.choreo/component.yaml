@@ -59,15 +59,21 @@ dependencies:
     #   - from: ServiceURL
     #     to: SERVICEURL
 
-    connectionReferences:
-      - name: connect-to-greeter-projectAccess
-        resourceRef: service:/testcomponentyaml/greeter/v1/803f0/PROJECT
+    # connectionReferences:
+      # - name: connect-to-greeter-projectAccess
+      #   resourceRef: service:/testcomponentyaml/greeter/v1/803f0/PROJECT
 
     # - name: connectionToMy3PS
     #   resourceRef: thirdparty:my3PS/v1
 
 
     serviceReferences:
+      - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/PROJECT
+        connectionConfig: 01ef96aa-7c8d-10c8-a7b6-d2d733d22b51
+        env:
+        - from: ServiceURL
+          to: CHOREO_CONNECT_TO_GREETER_PROJECTACCESS_SERVICEURL
+
       - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/ORGANIZATION
         connectionConfig: 01ef9741-1273-1768-b388-0189daaaa692
         env:
