@@ -24,6 +24,7 @@ func main() {
 
 	// Register a new endpoint for the second service
 	serverMux.HandleFunc("/greeter/greetOrg", greetHandlerOrg)
+	serverMux.HandleFunc("/greeter/greetDb", greetDb)
 
 	serverPort := 8080
 	server := http.Server{
@@ -63,6 +64,9 @@ func greetHandler(w http.ResponseWriter, r *http.Request) {
 func greetHandlerOrg(w http.ResponseWriter, r *http.Request) {
 	makeOrgRequest(w, r)
 }
+func greetDb(w http.ResponseWriter, r *http.Request) {
+	makeDbReq(w, r)
+}
 
 // makeProjectRequest makes a request to the PROJECT service without OAuth2 authentication
 func makeProjectRequest(w http.ResponseWriter, r *http.Request) {
@@ -92,6 +96,41 @@ func makeProjectRequest(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(resp.StatusCode)
 	w.Write(body)
+}
+
+func makeDbReq(w http.ResponseWriter, r *http.Request) {
+	hostName := os.Getenv("HNAME")
+	port := os.Getenv("PORT")
+	username := os.Getenv("UNAME")
+	password := os.Getenv("PWD")
+	dbName := os.Getenv("DBNAME")
+	
+	
+
+	if hostName == "" || port == "" || username == "" || password == "" || dbName == "" {
+		missingVars := []string{}
+		if hostName == "" {
+			missingVars = append(missingVars, "HNAME")
+		}
+		if port == "" {
+			missingVars = append(missingVars, "PORT");
+		}
+		if username == "" {
+			missingVars = append(missingVars, "UNAME");
+		}
+		if password == "" {
+			missingVars = append(missingVars, "PWD");
+		}
+		if dbName == "" {
+			missingVars = append(missingVars, "DBNAME");
+		}
+		http.Error(w, fmt.Sprintf("Missing required environment variables: %v", missingVars), http.StatusInternalServerError)
+		return
+	}
+
+	// Display the environment variables as a simple response
+	w.Header().Set("Content-Type", "text/plain")
+	fmt.Fprintf(w, "3PS Environment Variables:\n1. Hostname: %s\n2. Port: %s\n3. Username: %s\n4. Password: %s\n5. Database Name: %s\n", hostName, port, username, password, dbName)
 }
 
 // makeOrgRequest makes an OAuth2 authenticated request to the ORG service
