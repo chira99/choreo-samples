@@ -99,11 +99,11 @@ func makeProjectRequest(w http.ResponseWriter, r *http.Request) {
 }
 
 func makeDbReq(w http.ResponseWriter, r *http.Request) {
-	hostName := os.Getenv("HNAME")
-	port := os.Getenv("PORT")
-	username := os.Getenv("UNAME")
-	password := os.Getenv("PWD")
-	dbName := os.Getenv("DBNAME")
+	hostName := os.Getenv("CHOREO_CONNECTDBDEV_HOSTNAME")
+	port := os.Getenv("CHOREO_CONNECTDBDEV_PORT")
+	username := os.Getenv("CHOREO_CONNECTDBDEV_USERNAME")
+	password := os.Getenv("CHOREO_CONNECTDBDEV_PASSWORD")
+	dbName := os.Getenv("CHOREO_CONNECTDBDEV_DATABASENAME")
 	
 	
 

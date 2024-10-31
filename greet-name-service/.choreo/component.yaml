@@ -86,19 +86,23 @@ dependencies:
         - from: TokenURL
           to: TURL 
 
-      - name: database:devdb
-        connectionConfig: 01ef9767-e15a-16ce-a96c-1e5132d1693e
-        env: 
-        - from: HostName
-          to: HNAME
-        - from: Port
-          to: PORT
-        - from: Username
-          to: UNAME
-        - from: Password
-          to: PWD
-        - from: DatabaseName
-          to: DBNAME
+      # - name: database:devdb
+      #   connectionConfig: 01ef9767-e15a-16ce-a96c-1e5132d1693e
+      #   env: 
+      #   - from: HostName
+      #     to: HNAME
+      #   - from: Port
+      #     to: PORT
+      #   - from: Username
+      #     to: UNAME
+      #   - from: Password
+      #     to: PWD
+      #   - from: DatabaseName
+      #     to: DBNAME
+    connectionReferences:
+      - name: connectDbDev
+        resourceRef: database:appointmentsdb/devdb
+    
 
     # - name: choreo:///chips/test1/worldservice/4fd61/v1/PUBLIC
     #   connectionConfig: 01ef8b89-d578-1836-9993-d8d36d8e11d4
