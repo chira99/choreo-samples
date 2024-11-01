@@ -67,28 +67,48 @@ dependencies:
     #   resourceRef: thirdparty:my3PS/v1
 
 
-    serviceReferences:
-      - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/PROJECT
-        connectionConfig: 01ef96aa-7c8d-10c8-a7b6-d2d733d22b51
-        env:
-        - from: ServiceURL
-          to: CHOREO_CONNECT_TO_GREETER_PROJECTACCESS_SERVICEURL
-
-      - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/ORGANIZATION
-        connectionConfig: 01ef9741-1273-1768-b388-0189daaaa692
-        env:
-        - from: ServiceURL
-          to: SURL
-        - from: ConsumerKey
-          to: CKEY
-        - from: ConsumerSecret
-          to: CSECRET
-        - from: TokenURL
-          to: TURL 
 
     connectionReferences:
-      - name: connectDbDev
-        resourceRef: database:appointmentsdb/devdb
+      - name: connect-multi-1
+        resourceRef: service:/testcomponentyaml/go-multi-1/v1/803f0/PUBLIC
+
+
+      # - name: connect-proj-1
+      #   resourceRef: service:/testcomponentyaml/go-proj-1/v1/803f0/PROJECT
+
+
+
+    # - name: connectDbDev
+    #   resourceRef: database:appointmentsdb/devdb
+
+
+    serviceReferences:
+      - name: choreo:///apifirst/testcomponentyaml/go-multi-2/803f0/v1/PROJECT
+        connectionConfig: 01ef9816-5f75-14c8-82d9-a261c3cd01d8
+        env:
+        - from: ServiceURL
+          to: CHOREO_CONNECT_MULTI_2_SERVICEURL
+
+      - 
+    #   - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/PROJECT
+    #     connectionConfig: 01ef96aa-7c8d-10c8-a7b6-d2d733d22b51
+    #     env:
+    #     - from: ServiceURL
+    #       to: CHOREO_CONNECT_TO_GREETER_PROJECTACCESS_SERVICEURL
+
+    #   - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/ORGANIZATION
+    #     connectionConfig: 01ef9741-1273-1768-b388-0189daaaa692
+    #     env:
+    #     - from: ServiceURL
+    #       to: SURL
+    #     - from: ConsumerKey
+    #       to: CKEY
+    #     - from: ConsumerSecret
+    #       to: CSECRET
+    #     - from: TokenURL
+    #       to: TURL 
+
+
       # - name: database:devdb
       #   connectionConfig: 01ef9767-e15a-16ce-a96c-1e5132d1693e
       #   env: 
