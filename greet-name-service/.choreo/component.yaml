@@ -68,18 +68,18 @@ dependencies:
 
 
 
-    connectionReferences:
-      - name: connect-multi-1
-        resourceRef: service:/testcomponentyaml/go-multi-1/v1/803f0/PUBLIC
+    # connectionReferences:
+    #   - name: connect-multi-1
+    #     resourceRef: service:/testcomponentyaml/go-multi-1/v1/803f0/PUBLIC
 
-      - name: connect-proj-1
-        resourceRef: service:/testcomponentyaml/go-proj-1/v1/803f0/PROJECT
+    #   - name: connect-proj-1
+    #     resourceRef: service:/testcomponentyaml/go-proj-1/v1/803f0/PROJECT
 
-      - name: connect-org-1
-        resourceRef: service:/testcomponentyaml/go-org-1/v1/803f0/ORGANIZATION
+    #   - name: connect-org-1
+    #     resourceRef: service:/testcomponentyaml/go-org-1/v1/803f0/ORGANIZATION
 
-      - name: connect-public-1-proj
-        resourceRef: service:/testcomponentyaml/go-public-1/v1/803f0/PUBLIC
+    #   - name: connect-public-1-proj
+    #     resourceRef: service:/testcomponentyaml/go-public-1/v1/803f0/PUBLIC
 
 
     # - name: connectDbDev
