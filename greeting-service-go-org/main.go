@@ -67,5 +67,5 @@ func greet(w http.ResponseWriter, r *http.Request) {
 	if name == "" {
 		name = "Stranger"
 	}
-	fmt.Fprintf(w, "Hello, %s!\n: from multi", name)
+	fmt.Fprintf(w, "Hello, %s!\n :from org visibility", name)
 }

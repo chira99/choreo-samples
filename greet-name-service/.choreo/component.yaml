@@ -86,6 +86,9 @@ dependencies:
         - from: TokenURL
           to: TURL 
 
+    connectionReferences:
+      - name: connectDbDev
+        resourceRef: database:appointmentsdb/devdb
       # - name: database:devdb
       #   connectionConfig: 01ef9767-e15a-16ce-a96c-1e5132d1693e
       #   env: 
@@ -99,9 +102,6 @@ dependencies:
       #     to: PWD
       #   - from: DatabaseName
       #     to: DBNAME
-    connectionReferences:
-      - name: connectDbDev
-        resourceRef: database:appointmentsdb/devdb
 
       # - name: connectDbProd
       #   resourceRef: database:appointmentsdb/prodDb
