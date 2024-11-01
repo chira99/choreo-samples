@@ -89,7 +89,7 @@ dependencies:
         - from: ServiceURL
           to: CHOREO_CONNECT_MULTI_2_SERVICEURL
 
-      - 
+      
     #   - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/PROJECT
     #     connectionConfig: 01ef96aa-7c8d-10c8-a7b6-d2d733d22b51
     #     env:
