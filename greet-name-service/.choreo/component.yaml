@@ -78,7 +78,7 @@ dependencies:
       - name: connect-org-1
         resourceRef: service:/testcomponentyaml/go-org-1/v1/803f0/ORGANIZATION
 
-      - name: connect-public-1
+      - name: connect-public-1-proj
         resourceRef: service:/testcomponentyaml/go-public-1/v1/803f0/PUBLIC
 
 
@@ -112,17 +112,31 @@ dependencies:
         - from: TokenURL
           to: CHOREO_CONNECT_ORG_2_TOKENURL
 
+      # - name: choreo:///apifirst/testcomponentyaml/go-public-2/803f0/v1/PUBLIC
+      #   connectionConfig: 01ef9827-d071-1306-b450-138f513cc260
+      #   env:
+      #   - from: ServiceURL
+      #     to: CHOREO_CONNECT_PUBLIC_2_SERVICEURL
+      #   - from: ConsumerKey
+      #     to: CHOREO_CONNECT_PUBLIC_2_CONSUMERKEY
+      #   - from: ConsumerSecret
+      #     to: CHOREO_CONNECT_PUBLIC_2_CONSUMERSECRET
+      #   - from: TokenURL
+      #     to: CHOREO_CONNECT_PUBLIC_2_TOKENURL
+
+
       - name: choreo:///apifirst/testcomponentyaml/go-public-2/803f0/v1/PUBLIC
-        connectionConfig: 01ef9827-d071-1306-b450-138f513cc260
+        connectionConfig: 01ef982c-555e-1488-b20c-fd61da673673
         env:
         - from: ServiceURL
-          to: CHOREO_CONNECT_PUBLIC_2_SERVICEURL
+          to: CHOREO_CONNECT_PUBLIC_2_PROJ_SERVICEURL
         - from: ConsumerKey
-          to: CHOREO_CONNECT_PUBLIC_2_CONSUMERKEY
+          to: CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERKEY
         - from: ConsumerSecret
-          to: CHOREO_CONNECT_PUBLIC_2_CONSUMERSECRET
+          to: CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERSECRET
         - from: TokenURL
-          to: CHOREO_CONNECT_PUBLIC_2_TOKENURL
+          to: CHOREO_CONNECT_PUBLIC_2_PROJ_TOKENURL
+
 
 
 

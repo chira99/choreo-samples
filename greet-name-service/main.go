@@ -330,24 +330,24 @@ func greetGoOrg2(w http.ResponseWriter, r *http.Request) {
 }
 
 func greetGoPublic(w http.ResponseWriter, r *http.Request) {
-	serviceURL := os.Getenv("CHOREO_CONNECT_PUBLIC_1_SERVICEURL")
-	clientID := os.Getenv("CHOREO_CONNECT_PUBLIC_1_CONSUMERKEY")
-	clientSecret := os.Getenv("CHOREO_CONNECT_PUBLIC_1_CONSUMERSECRET")
-	tokenURL := os.Getenv("CHOREO_CONNECT_PUBLIC_1_TOKENURL")
+	serviceURL := os.Getenv("CHOREO_CONNECT_PUBLIC_1_PROJ_SERVICEURL")
+	clientID := os.Getenv("CHOREO_CONNECT_PUBLIC_1_PROJ_CONSUMERKEY")
+	clientSecret := os.Getenv("CHOREO_CONNECT_PUBLIC_1_PROJ_CONSUMERSECRET")
+	tokenURL := os.Getenv("CHOREO_CONNECT_PUBLIC_1_PROJ_TOKENURL")
 
 	if serviceURL == "" || clientID == "" || clientSecret == "" || tokenURL == "" {
 		missingVars := []string{}
 		if serviceURL == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_SERVICEURL")
+			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_PROJ_SERVICEURL")
 		}
 		if clientID == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_CONSUMERKEY")
+			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_PROJ_CONSUMERKEY")
 		}
 		if clientSecret == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_CONSUMERSECRET")
+			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_PROJ_CONSUMERSECRET")
 		}
 		if tokenURL == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_TOKENURL")
+			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_PROJ_TOKENURL")
 		}
 		http.Error(w, fmt.Sprintf("Missing required environment variables: %v", missingVars), http.StatusInternalServerError)
 		return
@@ -386,24 +386,24 @@ func greetGoPublic(w http.ResponseWriter, r *http.Request) {
 	w.Write(body)
 }
 func greetGoPublic2(w http.ResponseWriter, r *http.Request) {
-	serviceURL := os.Getenv("CHOREO_CONNECT_PUBLIC_2_SERVICEURL")
-	clientID := os.Getenv("CHOREO_CONNECT_PUBLIC_2_CONSUMERKEY")
-	clientSecret := os.Getenv("CHOREO_CONNECT_PUBLIC_2_CONSUMERSECRET")
-	tokenURL := os.Getenv("CHOREO_CONNECT_PUBLIC_2_TOKENURL")
+	serviceURL := os.Getenv("CHOREO_CONNECT_PUBLIC_2_PROJ_SERVICEURL")
+	clientID := os.Getenv("CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERKEY")
+	clientSecret := os.Getenv("CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERSECRET")
+	tokenURL := os.Getenv("CHOREO_CONNECT_PUBLIC_2_PROJ_TOKENURL")
 
 	if serviceURL == "" || clientID == "" || clientSecret == "" || tokenURL == "" {
 		missingVars := []string{}
 		if serviceURL == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_2_SERVICEURL")
+			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_2_PROJ_SERVICEURL")
 		}
 		if clientID == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_2_CONSUMERKEY")
+			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERKEY");
 		}
 		if clientSecret == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_2_CONSUMERSECRET")
+			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERSECRET");
 		}
 		if tokenURL == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_2_TOKENURL")
+			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_2_PROJ_TOKENURL");
 		}
 		http.Error(w, fmt.Sprintf("Missing required environment variables: %v", missingVars), http.StatusInternalServerError)
 		return
