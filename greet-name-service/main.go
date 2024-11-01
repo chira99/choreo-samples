@@ -24,8 +24,8 @@ func main() {
 	serverMux.HandleFunc("/greeter/greetGo2", greetGo2)
 	serverMux.HandleFunc("/greeter/greetGoProj", greetGoProj)
 	serverMux.HandleFunc("/greeter/greetGoProj2", greetGoProj2)
-	// serverMux.HandleFunc("/greeter/greetGoOrg", greetGoOrg)
-	// serverMux.HandleFunc("/greeter/greetGoOrg2", greetGoOrg2)
+	serverMux.HandleFunc("/greeter/greetGoOrg", greetGoOrg)
+	serverMux.HandleFunc("/greeter/greetGoOrg2", greetGoOrg2)
 	// serverMux.HandleFunc("/greeter/greetGoPublic", greetGoPublic)
 	// serverMux.HandleFunc("/greeter/greetGoPublic2", greetGoPublic2)
 
@@ -208,6 +208,119 @@ func greetGoProj2(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println("Failed to read the response body for Go-Proj2 service")
 		http.Error(w, "Failed to read the response body of Go-Proj2", http.StatusInternalServerError)
+		return
+	}
+
+	// Write the response from the service to the HTTP response
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(resp.StatusCode)
+	w.Write(body)
+}
+
+func greetGoOrg(w http.ResponseWriter, r *http.Request) {
+	serviceURL := os.Getenv("CHOREO_CONNECT_ORG_1_SERVICEURL")
+	clientID := os.Getenv("CHOREO_CONNECT_ORG_1_CONSUMERKEY")
+	clientSecret := os.Getenv("CHOREO_CONNECT_ORG_1_CONSUMERSECRET")
+	tokenURL := os.Getenv("CHOREO_CONNECT_ORG_1_TOKENURL")
+
+	if serviceURL == "" || clientID == "" || clientSecret == "" || tokenURL == "" {
+		missingVars := []string{}
+		if serviceURL == "" {
+			missingVars = append(missingVars, "CHOREO_CONNECT_ORG_1_SERVICEURL")
+		}
+		if clientID == "" {
+			missingVars = append(missingVars, "CHOREO_CONNECT_ORG_1_CONSUMERKEY")
+		}
+		if clientSecret == "" {
+			missingVars = append(missingVars, "CHOREO_CONNECT_ORG_1_CONSUMERSECRET")
+		}
+		if tokenURL == "" {
+			missingVars = append(missingVars, "CHOREO_CONNECT_ORG_1_TOKENURL")
+		}
+		http.Error(w, fmt.Sprintf("Missing required environment variables: %v", missingVars), http.StatusInternalServerError)
+		return
+	}
+
+	// Set up OAuth2 configuration
+	oauth2Config := clientcredentials.Config{
+		ClientID:     clientID,
+		ClientSecret: clientSecret,
+		TokenURL:     tokenURL,
+	}
+
+	// Create an HTTP client with OAuth2 token
+	client := oauth2Config.Client(context.Background())
+	serviceRequestURL := fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "chira")
+
+	// Make a request to the specified service API path
+	resp, err := client.Get(serviceRequestURL)
+	if err != nil {
+		log.Printf("Failed to make a request to GO-org-1 service: %v", err)
+		http.Error(w, fmt.Sprintf("Failed to make a request to GO-org-1 service: %v", err), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Println("Failed to read the response body for GO-org-1 service")
+		http.Error(w, "Failed to read the response body of GO-org-1", http.StatusInternalServerError)
+		return
+	}
+
+	// Write the response from the service to the HTTP response
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(resp.StatusCode)
+	w.Write(body)
+}
+func greetGoOrg2(w http.ResponseWriter, r *http.Request) {
+	serviceURL := os.Getenv("CHOREO_CONNECT_ORG_2_SERVICEURL")
+	clientID := os.Getenv("CHOREO_CONNECT_ORG_2_CONSUMERKEY")
+	clientSecret := os.Getenv("CHOREO_CONNECT_ORG_2_CONSUMERSECRET")
+	tokenURL := os.Getenv("CHOREO_CONNECT_ORG_2_TOKENURL")
+
+	if serviceURL == "" || clientID == "" || clientSecret == "" || tokenURL == "" {
+		missingVars := []string{}
+		if serviceURL == "" {
+			missingVars = append(missingVars, "CHOREO_CONNECT_ORG_2_SERVICEURL")
+		}
+		if clientID == "" {
+			missingVars = append(missingVars, "CHOREO_CONNECT_ORG_2_CONSUMERKEY")
+		}
+		if clientSecret == "" {
+			missingVars = append(missingVars, "CHOREO_CONNECT_ORG_2_CONSUMERSECRET")
+		}
+		if tokenURL == "" {
+			missingVars = append(missingVars, "CHOREO_CONNECT_ORG_2_TOKENURL")
+		}
+		http.Error(w, fmt.Sprintf("Missing required environment variables: %v", missingVars), http.StatusInternalServerError)
+		return
+	}
+
+	// Set up OAuth2 configuration
+	oauth2Config := clientcredentials.Config{
+		ClientID:     clientID,
+		ClientSecret: clientSecret,
+		TokenURL:     tokenURL,
+	}
+
+	// Create an HTTP client with OAuth2 token
+	client := oauth2Config.Client(context.Background())
+	serviceRequestURL := fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "chira")
+
+	// Make a request to the specified service API path
+	resp, err := client.Get(serviceRequestURL)
+	if err != nil {
+		log.Printf("Failed to make a request to GO-org-2 service: %v", err)
+		http.Error(w, fmt.Sprintf("Failed to make a request to GO-org-2 service: %v", err), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Println("Failed to read the response body for GO-org-2 service")
+		http.Error(w, "Failed to read the response body of GO-org-2", http.StatusInternalServerError)
 		return
 	}
 

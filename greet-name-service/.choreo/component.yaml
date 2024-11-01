@@ -75,6 +75,9 @@ dependencies:
       - name: connect-proj-1
         resourceRef: service:/testcomponentyaml/go-proj-1/v1/803f0/PROJECT
 
+      - name: connect-org-1
+        resourceRef: service:/testcomponentyaml/go-org-1/v1/803f0/ORGANIZATION
+
 
     # - name: connectDbDev
     #   resourceRef: database:appointmentsdb/devdb
@@ -93,6 +96,18 @@ dependencies:
         env:
         - from: ServiceURL
           to: CHOREO_CONNECT_PROJ_2_SERVICEURL
+
+      - name: choreo:///apifirst/testcomponentyaml/go-org-2/803f0/v1/ORGANIZATION
+        connectionConfig: 01ef9823-e7ae-11ee-8613-0db7bdefcb73
+        env:
+        - from: ServiceURL
+          to: CHOREO_CONNECT_ORG_2_SERVICEURL
+        - from: ConsumerKey
+          to: CHOREO_CONNECT_ORG_2_CONSUMERKEY
+        - from: ConsumerSecret
+          to: CHOREO_CONNECT_ORG_2_CONSUMERSECRET
+        - from: TokenURL
+          to: CHOREO_CONNECT_ORG_2_TOKENURL
 
 
       

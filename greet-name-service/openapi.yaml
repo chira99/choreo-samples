@@ -84,6 +84,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /greeter/greetGoOrg:
+    get:
+      summary: Get a greeting message using OAuth2
+      description: Makes an OAuth2 authenticated request to retrieve a greeting message from the Go-org-1 service.
+      responses:
+        '200':
+          description: Successfully returns a greeting message.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Hello, chira :from org-1!"
+        '500':
+          description: Error occurred while processing the request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /greeter/greetGoOrg2:
+    get:
+      summary: Get a greeting message using OAuth2
+      description: Makes an OAuth2 authenticated request to retrieve a greeting message from the Go-org-2 service.
+      responses:
+        '200':
+          description: Successfully returns a greeting message.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Hello, chira :from org-2!"
+        '500':
+          description: Error occurred while processing the request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 components:
   securitySchemes:
