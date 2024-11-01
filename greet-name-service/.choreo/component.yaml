@@ -72,10 +72,8 @@ dependencies:
       - name: connect-multi-1
         resourceRef: service:/testcomponentyaml/go-multi-1/v1/803f0/PUBLIC
 
-
-      # - name: connect-proj-1
-      #   resourceRef: service:/testcomponentyaml/go-proj-1/v1/803f0/PROJECT
-
+      - name: connect-proj-1
+        resourceRef: service:/testcomponentyaml/go-proj-1/v1/803f0/PROJECT
 
 
     # - name: connectDbDev
@@ -88,6 +86,14 @@ dependencies:
         env:
         - from: ServiceURL
           to: CHOREO_CONNECT_MULTI_2_SERVICEURL
+
+
+      - name: choreo:///apifirst/testcomponentyaml/go-project-2/803f0/v1/PROJECT
+        connectionConfig: 01ef981a-d876-1a36-92b1-ec645102eecd
+        env:
+        - from: ServiceURL
+          to: CHOREO_CONNECT_PROJ_2_SERVICEURL
+
 
       
     #   - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/PROJECT

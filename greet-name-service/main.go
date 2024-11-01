@@ -22,8 +22,8 @@ func main() {
 	// Register the /greeter/greet handler
 	serverMux.HandleFunc("/greeter/greetGo", greetGo)
 	serverMux.HandleFunc("/greeter/greetGo2", greetGo2)
-	// serverMux.HandleFunc("/greeter/greetGoProj", greetGoProj)
-	// serverMux.HandleFunc("/greeter/greetGoProj2", greetGoProj2)
+	serverMux.HandleFunc("/greeter/greetGoProj", greetGoProj)
+	serverMux.HandleFunc("/greeter/greetGoProj2", greetGoProj2)
 	// serverMux.HandleFunc("/greeter/greetGoOrg", greetGoOrg)
 	// serverMux.HandleFunc("/greeter/greetGoOrg2", greetGoOrg2)
 	// serverMux.HandleFunc("/greeter/greetGoPublic", greetGoPublic)
@@ -144,6 +144,70 @@ func greetGo2(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println("Failed to read the response body for Go-2 service")
 		http.Error(w, "Failed to read the response body of Go-2", http.StatusInternalServerError)
+		return
+	}
+
+	// Write the response from the service to the HTTP response
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(resp.StatusCode)
+	w.Write(body)
+}
+func greetGoProj(w http.ResponseWriter, r *http.Request) {
+// sample go code snippet
+	serviceURL := os.Getenv("CHOREO_CONNECT_PROJ_1_SERVICEURL");
+
+	if serviceURL == "" {
+		http.Error(w, "Missing required environment variable: CHOREO_CONNECT_PROJ_1_SERVICEURL", http.StatusInternalServerError)
+		return
+	}
+
+	serviceRequestURL := fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "chira")
+
+	// Make a request to the specified service API path
+	resp, err := http.Get(serviceRequestURL)
+	if err != nil {
+		log.Printf("Failed to make a request to GO-Proj1 service: %v", err)
+		http.Error(w, fmt.Sprintf("Failed to make a request to Go-Proj1 service: %v", err), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Println("Failed to read the response body for Go-Proj1 service")
+		http.Error(w, "Failed to read the response body of Go-Proj1", http.StatusInternalServerError)
+		return
+	}
+
+	// Write the response from the service to the HTTP response
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(resp.StatusCode)
+	w.Write(body)
+}
+
+func greetGoProj2(w http.ResponseWriter, r *http.Request) {
+	serviceURL := os.Getenv("CHOREO_CONNECT_PROJ_2_SERVICEURL")
+
+	if serviceURL == "" {
+		http.Error(w, "Missing required environment variable: CHOREO_CONNECT_PROJ_2_SERVICEURL", http.StatusInternalServerError)
+		return
+	}
+
+	serviceRequestURL := fmt.Sprintf("%s/greeter/greet?name=%s", serviceURL, "chira")
+
+	// Make a request to the specified service API path
+	resp, err := http.Get(serviceRequestURL)
+	if err != nil {
+		log.Printf("Failed to make a request to GO-proj2 service: %v", err)
+		http.Error(w, fmt.Sprintf("Failed to make a request to Go-Proj2 service: %v", err), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Println("Failed to read the response body for Go-Proj2 service")
+		http.Error(w, "Failed to read the response body of Go-Proj2", http.StatusInternalServerError)
 		return
 	}
 
