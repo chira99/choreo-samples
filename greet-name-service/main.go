@@ -26,8 +26,8 @@ func main() {
 	serverMux.HandleFunc("/greeter/greetGoProj2", greetGoProj2)
 	serverMux.HandleFunc("/greeter/greetGoOrg", greetGoOrg)
 	serverMux.HandleFunc("/greeter/greetGoOrg2", greetGoOrg2)
-	// serverMux.HandleFunc("/greeter/greetGoPublic", greetGoPublic)
-	// serverMux.HandleFunc("/greeter/greetGoPublic2", greetGoPublic2)
+	serverMux.HandleFunc("/greeter/greetGoPublic", greetGoPublic)
+	serverMux.HandleFunc("/greeter/greetGoPublic2", greetGoPublic2)
 
 	// serverMux.HandleFunc("/greeter/greetOrg", greetHandlerOrg)
 	// serverMux.HandleFunc("/greeter/greetDb", greetDb)
@@ -77,10 +77,10 @@ func greetGo(w http.ResponseWriter, r *http.Request) {
 			missingVars = append(missingVars, "CHOREO_CONNECT_MULTI_1_CONSUMERKEY")
 		}
 		if clientSecret == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_MULTI_1_CONSUMERSECRET");
+			missingVars = append(missingVars, "CHOREO_CONNECT_MULTI_1_CONSUMERSECRET")
 		}
 		if tokenURL == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_MULTI_1_TOKENURL");
+			missingVars = append(missingVars, "CHOREO_CONNECT_MULTI_1_TOKENURL")
 		}
 		http.Error(w, fmt.Sprintf("Missing required environment variables: %v", missingVars), http.StatusInternalServerError)
 		return
@@ -119,7 +119,6 @@ func greetGo(w http.ResponseWriter, r *http.Request) {
 	w.Write(body)
 }
 
-
 // greetHandler handles the /greeter/greet API call for PROJECT
 func greetGo2(w http.ResponseWriter, r *http.Request) {
 	serviceURL := os.Getenv("CHOREO_CONNECT_MULTI_2_SERVICEURL")
@@ -153,8 +152,8 @@ func greetGo2(w http.ResponseWriter, r *http.Request) {
 	w.Write(body)
 }
 func greetGoProj(w http.ResponseWriter, r *http.Request) {
-// sample go code snippet
-	serviceURL := os.Getenv("CHOREO_CONNECT_PROJ_1_SERVICEURL");
+	// sample go code snippet
+	serviceURL := os.Getenv("CHOREO_CONNECT_PROJ_1_SERVICEURL")
 
 	if serviceURL == "" {
 		http.Error(w, "Missing required environment variable: CHOREO_CONNECT_PROJ_1_SERVICEURL", http.StatusInternalServerError)
@@ -345,10 +344,10 @@ func greetGoPublic(w http.ResponseWriter, r *http.Request) {
 			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_CONSUMERKEY")
 		}
 		if clientSecret == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_CONSUMERSECRET");
+			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_CONSUMERSECRET")
 		}
 		if tokenURL == "" {
-			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_TOKENURL");
+			missingVars = append(missingVars, "CHOREO_CONNECT_PUBLIC_1_TOKENURL")
 		}
 		http.Error(w, fmt.Sprintf("Missing required environment variables: %v", missingVars), http.StatusInternalServerError)
 		return
@@ -454,8 +453,6 @@ func greetGoPublic2(w http.ResponseWriter, r *http.Request) {
 // 	username := os.Getenv("CHOREO_CONNECTDBPROD_USERNAME")
 // 	password := os.Getenv("CHOREO_CONNECTDBPROD_PASSWORD")
 // 	dbName := os.Getenv("CHOREO_CONNECTDBPROD_DATABASENAME")
-	
-	
 
 // 	if hostName == "" || port == "" || username == "" || password == "" || dbName == "" {
 // 		missingVars := []string{}
@@ -486,7 +483,6 @@ func greetGoPublic2(w http.ResponseWriter, r *http.Request) {
 // func greetDb(w http.ResponseWriter, r *http.Request) {
 // 	makeDbReq(w, r)
 // }
-
 
 // makeProjectRequest makes a request to the PROJECT service without OAuth2 authentication
 // func makeProjectRequest(w http.ResponseWriter, r *http.Request) {
@@ -524,8 +520,6 @@ func greetGoPublic2(w http.ResponseWriter, r *http.Request) {
 // 	username := os.Getenv("CHOREO_CONNECTDBDEV_USERNAME")
 // 	password := os.Getenv("CHOREO_CONNECTDBDEV_PASSWORD")
 // 	dbName := os.Getenv("CHOREO_CONNECTDBDEV_DATABASENAME")
-	
-	
 
 // 	if hostName == "" || port == "" || username == "" || password == "" || dbName == "" {
 // 		missingVars := []string{}
@@ -552,5 +546,3 @@ func greetGoPublic2(w http.ResponseWriter, r *http.Request) {
 // 	w.Header().Set("Content-Type", "text/plain")
 // 	fmt.Fprintf(w, "DB dev Environment Variables:\n1. Hostname: %s\n2. Port: %s\n3. Username: %s\n4. Password: %s\n5. Database Name: %s\n", hostName, port, username, password, dbName)
 // }
-
-
