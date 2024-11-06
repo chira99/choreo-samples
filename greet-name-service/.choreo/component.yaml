@@ -77,8 +77,8 @@ dependencies:
   #   - name: noauth@Publisher
   #     resourceRef: noauth/v1
 
-    - name: testConnection
-      resourceRef: service:/test1/worldservice/v1/ep1/PRIVATE
+    # - name: testConnection
+    #   resourceRef: service:/test1/worldservice/v1/ep1/PRIVATE
 
   #   - name: OAUTH2PROTECTED-cc
   #     resourceRef:
