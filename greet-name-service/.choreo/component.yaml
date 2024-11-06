@@ -73,32 +73,32 @@ dependencies:
     - name: Test connectionToMy3PS_v2.2
       resourceRef: thirdparty:my3PS/V1.4
   
-  # services that should fail validation
-    - name: noauth@Publisher
-      resourceRef: noauth/v1
+  # # services that should fail validation
+  #   - name: noauth@Publisher
+  #     resourceRef: noauth/v1
 
     - name: testConnection
       resourceRef: service:/test1/worldservice/v1/ep1/PRIVATE
 
-    - name: OAUTH2PROTECTED-cc
-      resourceRef:
+  #   - name: OAUTH2PROTECTED-cc
+  #     resourceRef:
 
-    - name: connect-to-greeter-projectAccess
-      resourceRef: /testcomponentyaml/greeter/v1.1/803f0/PRIVATE
+  #   - name: connect-to-greeter-projectAccess
+  #     resourceRef: /testcomponentyaml/greeter/v1.1/803f0/PRIVATE
 
-    # Databases invalid
-    - name: connect DbDev
-      resourceRef: database:appointmentsdb/devdb/wrongHandle
+  #   # Databases invalid
+  #   - name: connect DbDev
+  #     resourceRef: database:appointmentsdb/devdb/wrongHandle
 
-    - name: fvv.cbs_kk v-2
-      resourceRef: database:hoteldbStage.1
+  #   - name: fvv.cbs_kk v-2
+  #     resourceRef: database:hoteldbStage.1
 
-    # third-party services invalid
-    - name: connectionToMy3PS-v2
-      resourceRef: thirdparty:my3PS/v1/wrong
+  #   # third-party services invalid
+  #   - name: connectionToMy3PS-v2
+  #     resourceRef: thirdparty:my3PS/v1/wrong
 
-    - name: Test connection ToMy3PS v2.2
-      resourceRef: thirdpart:my3PS/V1.4
+  #   - name: Test connection ToMy3PS v2.2
+  #     resourceRef: thirdpart:my3PS/V1.4
 
   serviceReferences:
     # Services
@@ -147,7 +147,7 @@ dependencies:
         to: CHOREO_CONNECT_PUBLIC_2_TOKENURL
 
 
-    - name: choreo:///apifirst/testcomponentyaml/go-public-2/803f0/v1/PUBLIC
+    - name: choreo:///apifirst/testcomponentyaml/go-public-2/803f0/v1/PUBLIC/cat
       connectionConfig: 01ef982c-555e-1488-b20c-fd61da673673
       env:
       - from: ServiceURL
@@ -178,7 +178,7 @@ dependencies:
         to: TURL 
 
     # Databases
-    - name: database:devdb
+    - name: database:devdb/cat/cat
       connectionConfig: 01ef9767-e15a-16ce-a96c-1e5132d1693e
       env: 
       - from: HostName
@@ -207,7 +207,7 @@ dependencies:
         to: DN12
 
 
-    - name: thirdparty:ThirdPartYService/v1
+    - name: thirdparty:ThirdPartYService/v1/cat
       connectionConfig: 01ef91c5-be5b-1160-8df2-27e24cbcd0c2
       env:
       - from: serviceURL
