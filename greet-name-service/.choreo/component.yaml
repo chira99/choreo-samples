@@ -33,167 +33,164 @@ endpoints:
 
 # +optional Outgoing connection details for the component
 dependencies:
-    # serviceReferences:
-    # - name: choreo:///chips/test1/testservice/803f0/v1/PUBLIC
-    #   connectionConfig: 01ef8b87-9d70-140e-98aa-7f7a0969ffc7
-    #   env:
-    #   # +optional Environment variables injected to the component for connection configuration
-    #     # +required Key name of the connection configuration
-    #     - from: ServiceURL
-    #       # +required Environment variable injected to the container
-    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_SERVICEURL
-    #     - from: ConsumerKey
-    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERKEY
-    #     - from: ConsumerSecret
-    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_CONSUMERSECRET
-    #     - from: TokenURL
-    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE_TOKENURL
+  connectionReferences:
+    # services
+    - name: noauthPublisher
+      resourceRef: noauth/v1
 
-    # - name: thirdparty:my3PS/v1
-    #   connectionConfig: 01ef95b3-d068-1fa0-aba4-c79dbc73bc63
-    #   env:
-    #   - from: TestKey
-    #     to: TESTKEY
-    #   - from: SecretKey
-    #     to: SECRETKEY
-    #   - from: ServiceURL
-    #     to: SERVICEURL
+    - name: project-level-conn
+      resourceRef: service:/test1/worldservice/v1/PUBLIC
 
-    # connectionReferences:
-      # - name: connect-to-greeter-projectAccess
-      #   resourceRef: service:/testcomponentyaml/greeter/v1/803f0/PROJECT
+    - name: OAUTH2PROTECTED-cc
+      resourceRef: service:/howtousetest/oauth2/v1/8b1c3
 
-    # - name: connectionToMy3PS
-    #   resourceRef: thirdparty:my3PS/v1
+    - name: connect-to-greeter-projectAccess
+      resourceRef: /testcomponentyaml/greeter/v1/803f0/PROJECT
 
+    - name: connect multi-1.1
+      resourceRef: /testcomponentyaml/go-multi-1/v1/803f0
 
+    - name: connect proj-1
+      resourceRef: /testcomponentyaml/go-proj-1/v1/PROJECT
 
-    # connectionReferences:
-    #   - name: connect-multi-1
-    #     resourceRef: service:/testcomponentyaml/go-multi-1/v1/803f0/PUBLIC
+    - name: connect org-1
+      resourceRef: service:/testcomponentyaml/go-org-1/v1/803f0/ORGANIZATION
 
-    #   - name: connect-proj-1
-    #     resourceRef: service:/testcomponentyaml/go-proj-1/v1/803f0/PROJECT
-
-    #   - name: connect-org-1
-    #     resourceRef: service:/testcomponentyaml/go-org-1/v1/803f0/ORGANIZATION
-
-    #   - name: connect-public-1-proj
-    #     resourceRef: service:/testcomponentyaml/go-public-1/v1/803f0/PUBLIC
-
-
-    # - name: connectDbDev
-    #   resourceRef: database:appointmentsdb/devdb
-
-
-    serviceReferences:
-      - name: choreo:///apifirst/testcomponentyaml/go-multi-2/803f0/v1/PROJECT
-        connectionConfig: 01ef9816-5f75-14c8-82d9-a261c3cd01d8
-        env:
-        - from: ServiceURL
-          to: CHOREO_CONNECT_MULTI_2_SERVICEURL
-
-
-      - name: choreo:///apifirst/testcomponentyaml/go-project-2/803f0/v1/PROJECT
-        connectionConfig: 01ef981a-d876-1a36-92b1-ec645102eecd
-        env:
-        - from: ServiceURL
-          to: CHOREO_CONNECT_PROJ_2_SERVICEURL
-
-      - name: choreo:///apifirst/testcomponentyaml/go-org-2/803f0/v1/ORGANIZATION
-        connectionConfig: 01ef9823-e7ae-11ee-8613-0db7bdefcb73
-        env:
-        - from: ServiceURL
-          to: CHOREO_CONNECT_ORG_2_SERVICEURL
-        - from: ConsumerKey
-          to: CHOREO_CONNECT_ORG_2_CONSUMERKEY
-        - from: ConsumerSecret
-          to: CHOREO_CONNECT_ORG_2_CONSUMERSECRET
-        - from: TokenURL
-          to: CHOREO_CONNECT_ORG_2_TOKENURL
-
-      # - name: choreo:///apifirst/testcomponentyaml/go-public-2/803f0/v1/PUBLIC
-      #   connectionConfig: 01ef9827-d071-1306-b450-138f513cc260
-      #   env:
-      #   - from: ServiceURL
-      #     to: CHOREO_CONNECT_PUBLIC_2_SERVICEURL
-      #   - from: ConsumerKey
-      #     to: CHOREO_CONNECT_PUBLIC_2_CONSUMERKEY
-      #   - from: ConsumerSecret
-      #     to: CHOREO_CONNECT_PUBLIC_2_CONSUMERSECRET
-      #   - from: TokenURL
-      #     to: CHOREO_CONNECT_PUBLIC_2_TOKENURL
-
-
-      - name: choreo:///apifirst/testcomponentyaml/go-public-2/803f0/v1/PUBLIC
-        connectionConfig: 01ef982c-555e-1488-b20c-fd61da673673
-        env:
-        - from: ServiceURL
-          to: CHOREO_CONNECT_PUBLIC_2_PROJ_SERVICEURL
-        - from: ConsumerKey
-          to: CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERKEY
-        - from: ConsumerSecret
-          to: CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERSECRET
-        - from: TokenURL
-          to: CHOREO_CONNECT_PUBLIC_2_PROJ_TOKENURL
-
-
-
-
-      
-    #   - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/PROJECT
-    #     connectionConfig: 01ef96aa-7c8d-10c8-a7b6-d2d733d22b51
-    #     env:
-    #     - from: ServiceURL
-    #       to: CHOREO_CONNECT_TO_GREETER_PROJECTACCESS_SERVICEURL
-
-    #   - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/ORGANIZATION
-    #     connectionConfig: 01ef9741-1273-1768-b388-0189daaaa692
-    #     env:
-    #     - from: ServiceURL
-    #       to: SURL
-    #     - from: ConsumerKey
-    #       to: CKEY
-    #     - from: ConsumerSecret
-    #       to: CSECRET
-    #     - from: TokenURL
-    #       to: TURL 
-
-
-      # - name: database:devdb
-      #   connectionConfig: 01ef9767-e15a-16ce-a96c-1e5132d1693e
-      #   env: 
-      #   - from: HostName
-      #     to: HNAME
-      #   - from: Port
-      #     to: PORT
-      #   - from: Username
-      #     to: UNAME
-      #   - from: Password
-      #     to: PWD
-      #   - from: DatabaseName
-      #     to: DBNAME
-
-      # - name: connectDbProd
-      #   resourceRef: database:appointmentsdb/prodDb
+    - name: connect public-1-proj
+      resourceRef: service:/testcomponentyaml/go-public-1/v1
     
+    # Databases valid
+    - name: connect DbDev
+      resourceRef: database:appointmentsdb/devdb
+
+    - name: fvv.cbs_kk v-2
+      resourceRef: database:hoteldbStage
+
+    # third-party services valid
+    - name: connectionToMy3PS-v2
+      resourceRef: thirdparty:my3PS/v1
+
+    - name: Test connectionToMy3PS_v2.2
+      resourceRef: thirdparty:my3PS/V1.4
+
+  serviceReferences:
+    # Services
+    - name: choreo:///hansijk/howtousetest/noauth/8b1c3/v1/PUBLIC
+      connectionConfig: 01ef902c-12ca-18e6-a871-1a9eb0debc74
+      env:
+      - from: ServiceURL
+        to: SVCURL
+      - from: ChoreoAPIKey
+        to: CAPIKEY
+
+    - name: choreo:///apifirst/testcomponentyaml/go-multi-2/803f0/v1/PROJECT
+      connectionConfig: 01ef9816-5f75-14c8-82d9-a261c3cd01d8
+      env:
+      - from: ServiceURL
+        to: CHOREO_CONNECT_MULTI_2_SERVICEURL
+
+    - name: choreo:///apifirst/testcomponentyaml/go-project-2/803f0/v1/PROJECT
+      connectionConfig: 01ef981a-d876-1a36-92b1-ec645102eecd
+      env:
+      - from: ServiceURL
+        to: CHOREO_CONNECT_PROJ_2_SERVICEURL
+
+    - name: choreo:///apifirst/testcomponentyaml/go-org-2/803f0/v1/ORGANIZATION
+      connectionConfig: 01ef9823-e7ae-11ee-8613-0db7bdefcb73
+      env:
+      - from: ServiceURL
+        to: CHOREO_CONNECT_ORG_2_SERVICEURL
+      - from: ConsumerKey
+        to: CHOREO_CONNECT_ORG_2_CONSUMERKEY
+      - from: ConsumerSecret
+        to: CHOREO_CONNECT_ORG_2_CONSUMERSECRET
+      - from: TokenURL
+        to: CHOREO_CONNECT_ORG_2_TOKENURL
+
+    - name: choreo:///apifirst/testcomponentyaml/go-public-2/803f0/v1/PUBLIC
+      connectionConfig: 01ef9827-d071-1306-b450-138f513cc260
+      env:
+      - from: ServiceURL
+        to: CHOREO_CONNECT_PUBLIC_2_SERVICEURL
+      - from: ConsumerKey
+        to: CHOREO_CONNECT_PUBLIC_2_CONSUMERKEY
+      - from: ConsumerSecret
+        to: CHOREO_CONNECT_PUBLIC_2_CONSUMERSECRET
+      - from: TokenURL
+        to: CHOREO_CONNECT_PUBLIC_2_TOKENURL
+
+
+    - name: choreo:///apifirst/testcomponentyaml/go-public-2/803f0/v1/PUBLIC
+      connectionConfig: 01ef982c-555e-1488-b20c-fd61da673673
+      env:
+      - from: ServiceURL
+        to: CHOREO_CONNECT_PUBLIC_2_PROJ_SERVICEURL
+      - from: ConsumerKey
+        to: CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERKEY
+      - from: ConsumerSecret
+        to: CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERSECRET
+      - from: TokenURL
+        to: CHOREO_CONNECT_PUBLIC_2_PROJ_TOKENURL
     
+    - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/PROJECT
+      connectionConfig: 01ef96aa-7c8d-10c8-a7b6-d2d733d22b51
+      env:
+      - from: ServiceURL
+        to: CHOREO_CONNECT_TO_GREETER_PROJECTACCESS_SERVICEURL
 
-    # - name: choreo:///chips/test1/worldservice/4fd61/v1/PUBLIC
-    #   connectionConfig: 01ef8b89-d578-1836-9993-d8d36d8e11d4
-    #   env:
-    #   # +optional Environment variables injected to the component for connection configuration
-    #     # +required Key name of the connection configuration
-    #     - from: ServiceURL
-    #       # +required Environment variable injected to the container
-    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_SERVICEURL
-    #     - from: ConsumerKey
-    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_CONSUMERKEY
-    #     - from: ConsumerSecret
-    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_CONSUMERSECRET
-    #     - from: TokenURL
-    #       to: CHOREO_CONNECT_MYSERVICE_TO_TESTSERVICE2_TOKENURL
+    - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/ORGANIZATION
+      connectionConfig: 01ef9741-1273-1768-b388-0189daaaa692
+      env:
+      - from: ServiceURL
+        to: SURL
+      - from: ConsumerKey
+        to: CKEY
+      - from: ConsumerSecret
+        to: CSECRET
+      - from: TokenURL
+        to: TURL 
 
-    # connectionReferences:
-    # - name: project-level-conn
-    #   resourceRef: service:/test1/worldservice/v1/4fd61/PUBLIC
+    # Databases
+    - name: database:devdb
+      connectionConfig: 01ef9767-e15a-16ce-a96c-1e5132d1693e
+      env: 
+      - from: HostName
+        to: HNAME
+      - from: Port
+        to: PORT
+      - from: Username
+        to: UNAME
+      - from: Password
+        to: PWD
+      - from: DatabaseName
+        to: DBNAME
+
+    - name: database:hoteldbStage
+      connectionConfig: 01ef9804-c1c5-1518-a2c6-77d2c626c48b
+      env: 
+      - from: HostName
+        to: H12
+      - from: Port
+        to: P12
+      - from: Username
+        to: U12
+      - from: Password
+        to: PP12
+      - from: DatabaseName
+        to: DN12
+
+
+    - name: thirdparty:ThirdPartYService/v1
+      connectionConfig: 01ef91c5-be5b-1160-8df2-27e24cbcd0c2
+      env:
+      - from: serviceURL
+        to: Happ
+      - from: ServiceURL
+        to: ASID
+
+
+
+    
+  
+
+
