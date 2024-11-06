@@ -34,9 +34,9 @@ endpoints:
 # +optional Outgoing connection details for the component
 dependencies:
   connectionReferences:
-    # services
-    - name: noauthPublisher
-      resourceRef: noauth/v1/epHandle/PUBLIC/PRIVATE
+    # services that should pass validation
+    - name: noauth Publisher-1.1
+      resourceRef: noauth/v1
 
     - name: project-level-conn
       resourceRef: service:/test1/worldservice/v1/PUBLIC
@@ -72,6 +72,33 @@ dependencies:
 
     - name: Test connectionToMy3PS_v2.2
       resourceRef: thirdparty:my3PS/V1.4
+  
+  # services that should fail validation
+    - name: noauth@Publisher
+      resourceRef: noauth/v1
+
+    - name:
+      resourceRef: service:/test1/worldservice/v1/PUBLIC
+
+    - name: OAUTH2PROTECTED-cc
+      resourceRef:
+
+    - name: connect-to-greeter-projectAccess
+      resourceRef: /testcomponentyaml/greeter/v1.1/803f0/PRIVATE
+
+    # Databases invalid
+    - name: connect DbDev
+      resourceRef: database:appointmentsdb/devdb/wrongHandle
+
+    - name: fvv.cbs_kk v-2
+      resourceRef: database:hoteldbStage.1
+
+    # third-party services invalid
+    - name: connectionToMy3PS-v2
+      resourceRef: thirdparty:my3PS/v1/wrong
+
+    - name: Test connection ToMy3PS v2.2
+      resourceRef: thirdpart:my3PS/V1.4
 
   serviceReferences:
     # Services
