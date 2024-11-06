@@ -36,7 +36,7 @@ dependencies:
   connectionReferences:
     # services
     - name: noauthPublisher
-      resourceRef: noauth/v1
+      resourceRef: noauth/v1/epHandle/PUBLIC/PRIVATE
 
     - name: project-level-conn
       resourceRef: service:/test1/worldservice/v1/PUBLIC
@@ -181,6 +181,14 @@ dependencies:
 
 
     - name: thirdparty:ThirdPartYService/v1
+      connectionConfig: 01ef91c5-be5b-1160-8df2-27e24cbcd0c2
+      env:
+      - from: serviceURL
+        to: Happ
+      - from: ServiceURL
+        to: ASID
+
+    - name: thirdparty:tpservice/v1
       connectionConfig: 01ef91c5-be5b-1160-8df2-27e24cbcd0c2
       env:
       - from: serviceURL
