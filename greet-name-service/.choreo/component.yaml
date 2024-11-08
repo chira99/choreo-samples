@@ -147,17 +147,17 @@ dependencies:
         to: CHOREO_CONNECT_PUBLIC_2_TOKENURL
 
 
-    - name: choreo:///apifirst/testcomponentyaml/go-public-2/803f0/v1/PUBLIC/cat
-      connectionConfig: 01ef982c-555e-1488-b20c-fd61da673673
-      env:
-      - from: ServiceURL
-        to: CHOREO_CONNECT_PUBLIC_2_PROJ_SERVICEURL
-      - from: ConsumerKey
-        to: CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERKEY
-      - from: ConsumerSecret
-        to: CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERSECRET
-      - from: TokenURL
-        to: CHOREO_CONNECT_PUBLIC_2_PROJ_TOKENURL
+    # - name: choreo:///apifirst/testcomponentyaml/go-public-2/803f0/v1/PUBLIC/cat
+    #   connectionConfig: 01ef982c-555e-1488-b20c-fd61da673673
+    #   env:
+    #   - from: ServiceURL
+    #     to: CHOREO_CONNECT_PUBLIC_2_PROJ_SERVICEURL
+    #   - from: ConsumerKey
+    #     to: CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERKEY
+    #   - from: ConsumerSecret
+    #     to: CHOREO_CONNECT_PUBLIC_2_PROJ_CONSUMERSECRET
+    #   - from: TokenURL
+    #     to: CHOREO_CONNECT_PUBLIC_2_PROJ_TOKENURL
     
     - name: choreo:///apifirst/testcomponentyaml/greeter/803f0/v1/PROJECT
       connectionConfig: 01ef96aa-7c8d-10c8-a7b6-d2d733d22b51
@@ -178,19 +178,19 @@ dependencies:
         to: TURL 
 
     # Databases
-    - name: database:devdb/cat/cat
-      connectionConfig: 01ef9767-e15a-16ce-a96c-1e5132d1693e
-      env: 
-      - from: HostName
-        to: HNAME
-      - from: Port
-        to: PORT
-      - from: Username
-        to: UNAME
-      - from: Password
-        to: PWD
-      - from: DatabaseName
-        to: DBNAME
+    # - name: database:devdb/cat/cat
+    #   connectionConfig: 01ef9767-e15a-16ce-a96c-1e5132d1693e
+    #   env: 
+    #   - from: HostName
+    #     to: HNAME
+    #   - from: Port
+    #     to: PORT
+    #   - from: Username
+    #     to: UNAME
+    #   - from: Password
+    #     to: PWD
+    #   - from: DatabaseName
+    #     to: DBNAME
 
     - name: database:hoteldbStage
       connectionConfig: 01ef9804-c1c5-1518-a2c6-77d2c626c48b
@@ -207,13 +207,13 @@ dependencies:
         to: DN12
 
 
-    - name: thirdparty:ThirdPartYService/v1/cat
-      connectionConfig: 01ef91c5-be5b-1160-8df2-27e24cbcd0c2
-      env:
-      - from: serviceURL
-        to: Happ
-      - from: ServiceURL
-        to: ASID
+    # - name: thirdparty:ThirdPartYService/v1/cat
+    #   connectionConfig: 01ef91c5-be5b-1160-8df2-27e24cbcd0c2
+    #   env:
+    #   - from: serviceURL
+    #     to: Happ
+    #   - from: ServiceURL
+    #     to: ASID
 
     - name: thirdparty:tpservice/v1
       connectionConfig: 01ef91c5-be5b-1160-8df2-27e24cbcd0c2
